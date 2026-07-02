@@ -1,1 +1,160 @@
-<!DOCTYPE html><html><head><title>Home</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda - Sentra UMKM</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/User/home.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="topbar-comprehensive sticky-top">
+            <div class="topbar-comprehensive-inner">
+                <div class="topbar-comprehensive-left">
+                    <i class="fas fa-utensils fa-2x site-logo"></i>
+                    <h2 class="site-name-comprehensive">Sentra UMKM</h2>
+                </div>
+                <div class="topbar-comprehensive-right">
+                    <div class="user-info-comprehensive" id="user-menu-btn-comprehensive">
+                        <div class="user-avatar-comprehensive">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-dropdown-comprehensive" id="profile-dropdown-comprehensive">
+                            <a href="profile.html">Pengaturan Akun</a>
+                            <a href="history.html">Pesanan Saya</a>
+                            <a href="../index.html" class="text-danger" style="color: #dc2626;">Keluar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content-comprehensive">
+            <div class="content-area">
+                <div class="banner" id="promo-banner-comprehensive">
+                    <div class="banner-content-wrapper" id="banner-content-comprehensive">
+                        <div class="banner-text">
+                            <h3 id="banner-title">Lapar? Pesan Sekarang!</h3>
+                            <p id="banner-desc">Dukung UMKM lokal dengan menikmati berbagai kuliner dan oleh-oleh khas.</p>
+                        </div>
+                        <div>
+                            <a href="tenant.html" class="btn-order"><i class="fas fa-store"></i> Pilih Tenant</a>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Akses Cepat</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-img" style="background-color: #ffedd5; color: var(--secondary);">
+                            <i class="fas fa-store fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Jelajahi Tenant</h4>
+                            <p>Lihat daftar lengkap UMKM beserta produk-produk andalannya.</p>
+                            <a href="tenant.html" class="card-btn">Lihat Tenant</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img" style="background-color: #dcfce7; color: var(--accent);">
+                            <i class="fas fa-ticket-alt fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Promo Spesial</h4>
+                            <p>Lihat diskon menarik dan potongan ongkir dari tenant pilihan.</p>
+                            <a href="tenant.html" class="card-btn">Cari Promo</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-img" style="background-color: #fce7f3; color: var(--primary);">
+                            <i class="fas fa-history fa-4x"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4>Riwayat Transaksi</h4>
+                            <p>Pantau pesanan yang sedang diproses maupun yang sudah selesai.</p>
+                            <a href="history.html" class="card-btn">Cek Riwayat</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tenant-section">
+                    <h2 class="section-title">Daftar Tenant Pilihan</h2>
+                    <div class="tenant-grid">
+                        <div class="tenant-item">
+                            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Tenant 1" class="tenant-cover">
+                            <div class="tenant-info">
+                                <h4>Warung Sate Khas Madura Cak Malik</h4>
+                                <div class="tenant-rating">
+                                    <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star-half-alt text-warning"></i>
+                                    <span class="rating-score">4.6</span>
+                                </div>
+                                <p>Sate ayam dan kambing pilihan dengan siraman bumbu kacang kental legendaris.</p>
+                                <a href="detail-tenant.html?id=4" class="tenant-btn">Kunjungi Tenant</a>
+                            </div>
+                        </div>
+                        <div class="tenant-item">
+                            <img src="https://images.unsplash.com/photo-1599490659213-e2b9527bb087?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Tenant 2" class="tenant-cover">
+                            <div class="tenant-info">
+                                <h4>Pusat Oleh-Oleh Mbok Giyem</h4>
+                                <div class="tenant-rating">
+                                    <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star-half-alt text-warning"></i>
+                                    <span class="rating-score">4.5</span>
+                                </div>
+                                <p>Menyediakan aneka keripik tempe, singkong, pisang lumer, dan buah kering renyah khas lokal.</p>
+                                <a href="detail-tenant.html?id=2" class="tenant-btn">Kunjungi Tenant</a>
+                            </div>
+                        </div>
+                        <div class="tenant-item">
+                            <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Tenant 3" class="tenant-cover">
+                            <div class="tenant-info">
+                                <h4>Kedai Kopi Pak Kumis</h4>
+                                <div class="tenant-rating">
+                                    <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i>
+                                    <span class="rating-score">4.9</span>
+                                </div>
+                                <p>Tempat berkumpulnya penikmat kopi lokal racikan manual brew barista berpengalaman.</p>
+                                <a href="detail-tenant.html?id=3" class="tenant-btn">Kunjungi Tenant</a>
+                            </div>
+                        </div>
+                        <div class="tenant-item">
+                            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Tenant 4" class="tenant-cover">
+                            <div class="tenant-info">
+                                <h4>Ayam Bakar Bu Sri</h4>
+                                <div class="tenant-rating">
+                                    <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star-half-alt text-warning"></i>
+                                    <span class="rating-score">4.8</span>
+                                </div>
+                                <p>Spesialis ayam bakar madu bumbu meresap dan aneka sambal Nusantara sejak 1999.</p>
+                                <a href="detail-tenant.html?id=1" class="tenant-btn">Kunjungi Tenant</a>
+                            </div>
+                        </div>
+                        <div class="tenant-item">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Tenant 5" class="tenant-cover">
+                            <div class="tenant-info">
+                                <h4>Dapur Organik Sehat Mama</h4>
+                                <div class="tenant-rating">
+                                    <i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star text-warning"></i><i class="fas fa-star-half-alt text-warning"></i>
+                                    <span class="rating-score">4.7</span>
+                                </div>
+                                <p>Menyediakan katering makanan sehat, rendah kalori, non-MSG, dan ramah diet.</p>
+                                <a href="detail-tenant.html?id=5" class="tenant-btn">Kunjungi Tenant</a>
+                            </div>
+                        </div>
+                        <div class="tenant-item more-item" onclick="location.href='tenant.html';">
+                            <div class="more-icon-wrap">
+                                <i class="fas fa-arrow-right fa-lg"></i>
+                            </div>
+                            <h4>Lihat Lebih Banyak</h4>
+                            <p>Jelajahi puluhan tenant kuliner unik lainnya</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/user.js"></script>
+</body>
+</html>

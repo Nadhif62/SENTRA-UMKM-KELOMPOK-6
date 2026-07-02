@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Sentra UMKM</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/User/checkout.css">
+</head>
+<body class="checkout-body-bg">
+    <nav class="checkout-top-nav">
+        <button class="btn-circle-back" onclick="window.history.back()">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="checkout-title">Konfirmasi Pesanan</h2>
+    </nav>
+
+    <div class="checkout-container">
+        <div class="checkout-section">
+            <h3 class="checkout-section-title"><i class="fas fa-map-marker-alt"></i> Alamat Pengiriman</h3>
+            <textarea id="deliveryAddress" class="checkout-input" rows="3" placeholder="Masukkan alamat lengkap pengiriman..."></textarea>
+        </div>
+
+        <div class="checkout-section">
+            <h3 class="checkout-section-title"><i class="fas fa-shopping-bag"></i> Ringkasan Pesanan</h3>
+            <div id="checkoutItemsContainer" class="checkout-items-list"></div>
+        </div>
+
+        <div class="checkout-section">
+            <h3 class="checkout-section-title"><i class="fas fa-wallet"></i> Metode Pembayaran</h3>
+            <select id="paymentMethod" class="checkout-select">
+                <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
+                <option value="Transfer Bank">Transfer Bank</option>
+                <option value="QRIS">QRIS</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="checkout-floating-bar">
+        <div class="checkout-total-info">
+            <span>Total Tagihan</span>
+            <strong id="checkoutTotalDisplay">Rp 0</strong>
+        </div>
+        <button class="btn-confirm-order" id="btnConfirmOrder">BUAT PESANAN</button>
+    </div>
+
+    <script src="../js/user.js"></script>
+</body>
+</html>

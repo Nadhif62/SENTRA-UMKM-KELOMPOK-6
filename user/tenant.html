@@ -1,1 +1,90 @@
-<!DOCTYPE html><html><head><title>Tenant</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Tenant - Sentra UMKM</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/User/tenant.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="topbar-comprehensive sticky-top">
+            <div class="topbar-comprehensive-inner">
+                <div class="topbar-comprehensive-left" onclick="location.href='home.html';" style="cursor: pointer;">
+                    <i class="fas fa-utensils fa-2x site-logo"></i>
+                    <h2 class="site-name-comprehensive">Sentra UMKM</h2>
+                </div>
+                <div class="topbar-comprehensive-right">
+                    <div class="user-info-comprehensive" id="user-menu-btn-comprehensive">
+                        <div class="user-avatar-comprehensive">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="profile-dropdown-comprehensive" id="profile-dropdown-comprehensive">
+                            <a href="profile.html">Pengaturan Akun</a>
+                            <a href="history.html">Pesanan Saya</a>
+                            <a href="../index.html" class="text-danger" style="color: #dc2626;">Keluar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content-comprehensive">
+            <div class="content-area">
+                <div class="banner page-banner">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-text">
+                            <h3>Pesta Diskon UMKM!</h3>
+                            <p>Nikmati potongan harga hingga 30% khusus hari ini di tenant bertanda khusus.</p>
+                        </div>
+                        <div>
+                            <a href="#tenant-promo-section" class="btn-order"><i class="fas fa-percentage"></i> Lihat Promo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-filter-container enhanced-sf">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="searchInput" placeholder="Cari nama tenant atau jenis kuliner... (Tekan Enter)">
+                    </div>
+                    <div class="filter-box">
+                        <select class="filter-select" id="sortSelect">
+                            <option value="rekomendasi">Urutkan: Rekomendasi</option>
+                            <option value="rating">Rating Tertinggi</option>
+                            <option value="termurah">Harga Rata-rata Terendah</option>
+                            <option value="termahal">Harga Rata-rata Tertinggi</option>
+                        </select>
+                        <select class="filter-select" id="categorySelect">
+                            <option value="semua">Kategori: Semua</option>
+                            <option value="makanan">Makanan Berat</option>
+                            <option value="minuman">Minuman & Kopi</option>
+                            <option value="cemilan">Cemilan & Oleh-oleh</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tenant-section" id="tenant-promo-section">
+                    <h2 class="section-title-left"><i class="fas fa-fire text-danger"></i> Tenant Promo Spesial</h2>
+                    <div class="tenant-grid" id="promo-grid"></div>
+                </div>
+
+                <div class="tenant-section" id="tenant-regular-section" style="margin-top: 60px;">
+                    <h2 class="section-title-left"><i class="fas fa-store text-primary"></i> Semua Tenant Mitra</h2>
+                    <div class="tenant-grid" id="regular-grid"></div>
+                </div>
+
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    <i class="fas fa-search-minus fa-4x" style="color: #cbd5e1; margin-bottom: 15px;"></i>
+                    <h3>Pencarian tidak ditemukan</h3>
+                    <p>Maaf, kami tidak dapat menemukan tenant atau produk yang sesuai dengan filter Anda.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="../js/user.js"></script>
+</body>
+</html>

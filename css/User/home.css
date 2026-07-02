@@ -1,0 +1,114 @@
+.banner {
+    background-size: cover !important;
+    background-position: center !important;
+    border-radius: 16px;
+    padding: 40px;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    min-height: 250px;
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+}
+.banner-content-wrapper {
+    animation: slideIn 0.5s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.banner-text {
+    max-width: 60%;
+}
+.banner-text h3 {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    margin-top: 0;
+}
+.banner-text p {
+    font-size: 1.1rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    margin-top: 0;
+}
+.btn-order {
+    background-color: var(--accent);
+    color: var(--white);
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 6px rgba(22, 163, 74, 0.3);
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+.btn-order:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+.card {
+    background-color: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+    width: 100%;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.card-img {
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-content {
+    padding: 24px;
+    text-align: center;
+}
+.card-content h4 {
+    color: var(--primary);
+    margin: 0 0 10px 0;
+    font-size: 1.3rem;
+}
+.card-content p {
+    color: #78716c;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+}
+.card-btn {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    background-color: var(--bg-color);
+    color: var(--primary);
+    border-radius: 6px;
+    font-weight: 600;
+    transition: 0.3s;
+    text-decoration: none;
+}
+.card-btn:hover {
+    background-color: var(--secondary);
+    color: var(--white);
+}
+@media (max-width: 992px) {
+    .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .card-grid { grid-template-columns: 1fr; }
+    .banner-content-wrapper { flex-direction: column; text-align: center; gap: 20px; }
+    .banner-text { max-width: 100%; }
+}
