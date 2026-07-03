@@ -1,1 +1,127 @@
-<!DOCTYPE html><html><head><title>Data Produk</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sentra - Data Produk</title>
+    <link rel="stylesheet" href="../Css/Admin/produk.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-utensils"></i>
+            <h2>Admin Sentra</h2>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="tenant.html" class="nav-item">
+                <i class="fas fa-store"></i> Data Tenant
+            </a>
+            <a href="produk.html" class="nav-item active">
+                <i class="fas fa-hamburger"></i> Data Produk
+            </a>
+            <a href="transaksi.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i> Data Transaksi
+            </a>
+            <a href="laporan.html" class="nav-item">
+                <i class="fas fa-chart-line"></i> Laporan Penjualan
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Manajemen Data Produk</h1>
+            <div class="user-profile">
+                <div class="user-info">
+                    <span class="user-name">Super Admin</span>
+                    <span class="user-role">Pengelola Sentra</span>
+                </div>
+                <div class="avatar">SA</div>
+            </div>
+        </header>
+
+        <section class="table-section">
+            <div class="table-header">
+                <div class="filter-group">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Cari nama produk...">
+                    </div>
+                    <select class="category-select">
+                        <option value="">Semua Tenant</option>
+                        <option value="1">Ayam Bakar Pak Kumis</option>
+                        <option value="2">Es Boba Kekinian</option>
+                    </select>
+                </div>
+                <button class="btn-add">
+                    <i class="fas fa-plus"></i> Tambah Produk
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Foto</th>
+                            <th>Nama Produk</th>
+                            <th>Tenant</th>
+                            <th>Harga</th>
+                            <th>Stok</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=100" alt="Ayam" class="product-img"></td>
+                            <td><strong>Ayam Bakar Madu</strong></td>
+                            <td>Ayam Bakar Pak Kumis</td>
+                            <td>Rp 25.000</td>
+                            <td><span class="stock-label">45</span></td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100" alt="Boba" class="product-img"></td>
+                            <td><strong>Boba Brown Sugar</strong></td>
+                            <td>Es Boba Kekinian</td>
+                            <td>Rp 18.000</td>
+                            <td><span class="stock-label alert">5</span></td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><img src="https://images.unsplash.com/photo-1599490659213-e2b9527bb087?w=100" alt="Kripik" class="product-img"></td>
+                            <td><strong>Kripik Tempe Renyah</strong></td>
+                            <td>Oleh-Oleh Marni</td>
+                            <td>Rp 15.000</td>
+                            <td><span class="stock-label empty">0</span></td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
