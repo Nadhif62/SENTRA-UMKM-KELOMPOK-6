@@ -1,1 +1,120 @@
-<!DOCTYPE html><html><head><title>Data Tenant</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sentra - Data Tenant</title>
+    <link rel="stylesheet" href="../Css/Admin/tenant.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-utensils"></i>
+            <h2>Admin Sentra</h2>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="tenant.html" class="nav-item active">
+                <i class="fas fa-store"></i> Data Tenant
+            </a>
+            <a href="produk.html" class="nav-item">
+                <i class="fas fa-hamburger"></i> Data Produk
+            </a>
+            <a href="transaksi.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i> Data Transaksi
+            </a>
+            <a href="laporan.html" class="nav-item">
+                <i class="fas fa-chart-line"></i> Laporan Penjualan
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Manajemen Data Tenant</h1>
+            <div class="user-profile">
+                <div class="user-info">
+                    <span class="user-name">Super Admin</span>
+                    <span class="user-role">Pengelola Sentra</span>
+                </div>
+                <div class="avatar">SA</div>
+            </div>
+        </header>
+
+        <section class="table-section">
+            <div class="table-header">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari nama tenant...">
+                </div>
+                <button class="btn-add">
+                    <i class="fas fa-plus"></i> Tambah Tenant
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Tenant</th>
+                            <th>Pemilik</th>
+                            <th>Kategori</th>
+                            <th>Status</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Ayam Bakar Pak Kumis</strong></td>
+                            <td>Budi Santoso</td>
+                            <td>Makanan Berat</td>
+                            <td><span class="badge badge-active">Aktif</span></td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete" title="Hapus"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Es Boba Kekinian</strong></td>
+                            <td>Siti Aminah</td>
+                            <td>Minuman</td>
+                            <td><span class="badge badge-active">Aktif</span></td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete" title="Hapus"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Oleh-Oleh Khas Marni</strong></td>
+                            <td>Ibu Marni</td>
+                            <td>Camilan</td>
+                            <td><span class="badge badge-inactive">Nonaktif</span></td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete" title="Hapus"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
