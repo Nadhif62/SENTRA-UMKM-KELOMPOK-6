@@ -1,1 +1,169 @@
-<!DOCTYPE html><html><head><title>Laporan</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sentra - Laporan Penjualan</title>
+    <link rel="stylesheet" href="../Css/Admin/laporan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-utensils"></i>
+            <h2>Admin Sentra</h2>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="tenant.html" class="nav-item">
+                <i class="fas fa-store"></i> Data Tenant
+            </a>
+            <a href="produk.html" class="nav-item">
+                <i class="fas fa-hamburger"></i> Data Produk
+            </a>
+            <a href="transaksi.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i> Data Transaksi
+            </a>
+            <a href="laporan.html" class="nav-item active">
+                <i class="fas fa-chart-line"></i> Laporan Penjualan
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="../index.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Laporan Penjualan</h1>
+            <div class="user-profile">
+                <div class="user-info">
+                    <span class="user-name">Super Admin</span>
+                    <span class="user-role">Pengelola Sentra</span>
+                </div>
+                <div class="avatar">SA</div>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="card card-report">
+                <div class="card-details">
+                    <h3>Total Omzet (Kotor)</h3>
+                    <p class="card-value">Rp 12.450.000</p>
+                    <span class="card-label">Periode: Juli 2026</span>
+                </div>
+            </div>
+            <div class="card card-report">
+                <div class="card-details">
+                    <h3>Total Transaksi</h3>
+                    <p class="card-value">412</p>
+                    <span class="card-label">Pesanan Berhasil</span>
+                </div>
+            </div>
+            <div class="card card-report">
+                <div class="card-details">
+                    <h3>Pendapatan Bersih</h3>
+                    <p class="card-value text-green">Rp 11.205.000</p>
+                    <span class="card-label">Setelah Potongan Admin</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="report-section">
+            <div class="report-header">
+                <div class="filter-group">
+                    <div class="input-box">
+                        <label>Dari Tanggal:</label>
+                        <input type="date" value="2026-07-01">
+                    </div>
+                    <div class="input-box">
+                        <label>Sampai Tanggal:</label>
+                        <input type="date" value="2026-07-03">
+                    </div>
+                    <button class="btn-filter">Tampilkan</button>
+                </div>
+                <button class="btn-export">
+                    <i class="fas fa-file-pdf"></i> Cetak PDF
+                </button>
+            </div>
+
+            <div class="chart-wrapper">
+                <canvas id="reportChart"></canvas>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <h3>Rincian Penjualan per Hari</h3>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Total Order</th>
+                            <th>Omzet Kotor</th>
+                            <th>Biaya Admin (10%)</th>
+                            <th>Penjualan Bersih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01 Juli 2026</td>
+                            <td>120</td>
+                            <td>Rp 3.500.000</td>
+                            <td>Rp 350.000</td>
+                            <td><strong>Rp 3.150.000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>02 Juli 2026</td>
+                            <td>145</td>
+                            <td>Rp 4.200.000</td>
+                            <td>Rp 420.000</td>
+                            <td><strong>Rp 3.780.000</strong></td>
+                        </tr>
+                        <tr>
+                            <td>03 Juli 2026</td>
+                            <td>147</td>
+                            <td>Rp 4.750.000</td>
+                            <td>Rp 475.000</td>
+                            <td><strong>Rp 4.275.000</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="../js/admin.js"></script>
+    <script>
+        // Script khusus grafik laporan
+        const ctx = document.getElementById('reportChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['01 Juli', '02 Juli', '03 Juli'],
+                datasets: [{
+                    label: 'Omzet Penjualan (Rp)',
+                    data: [3500000, 4200000, 4750000],
+                    backgroundColor: '#1EAD4C',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
