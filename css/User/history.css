@@ -1,0 +1,361 @@
+.history-body-bg {
+    background-color: #f8fafc;
+}
+.history-container {
+    max-width: 1440px;
+    width: 96%;
+    margin: 32px auto;
+    padding: 0 0 80px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-sizing: border-box;
+}
+.history-header-card {
+    position: sticky;
+    top: 24px;
+    background-color: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 1px solid #f1f5f9;
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+}
+.btn-circle-back-embedded {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: #f1f5f9;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1.2rem;
+}
+.btn-circle-back-embedded:hover {
+    background: var(--secondary);
+    color: var(--white);
+    transform: scale(1.05);
+}
+.history-title-embedded {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+}
+.history-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 24px;
+}
+.history-card {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.history-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+    border-color: #cbd5e1;
+}
+.history-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px dashed #e2e8f0;
+    background: #fafaf9;
+}
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.icon-tenant {
+    color: var(--secondary);
+    font-size: 1.1rem;
+}
+.tenant-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-color);
+}
+.status-badge {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+.status-pending { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+.status-process { background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; }
+.status-success { background: #dcfce7; color: #16a34a; border: 1px solid #bbf7d0; }
+.status-failed { background: #fee2e2; color: #dc2626; border: 1px solid #fecaca; }
+.history-card-body {
+    padding: 20px;
+    flex-grow: 1;
+}
+.order-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+.order-id strong {
+    color: var(--text-color);
+}
+.order-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.order-items-preview {
+    background: #f8fafc;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+}
+.history-item-row {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-bottom: 6px;
+}
+.history-item-row:last-child {
+    margin-bottom: 0;
+}
+.more-items {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    font-style: italic;
+    margin-top: 8px;
+}
+.history-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-top: 1px solid #e2e8f0;
+}
+.total-wrap {
+    display: flex;
+    flex-direction: column;
+}
+.total-label {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+.total-value {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+.btn-detail-order {
+    background: var(--white);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-detail-order:hover {
+    background: var(--secondary);
+    color: var(--white);
+}
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #e2e8f0;
+}
+.empty-icon-wrap {
+    width: 100px;
+    height: 100px;
+    background: #fffdf5;
+    color: var(--secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+.empty-state h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.5rem;
+    color: var(--text-color);
+}
+.empty-state p {
+    color: #64748b;
+    margin: 0 0 24px 0;
+    max-width: 400px;
+}
+.btn-shop-now {
+    background: var(--secondary);
+    color: var(--white);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn-shop-now:hover {
+    background: #b45309;
+}
+.history-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 16px;
+}
+.history-modal-content {
+    background: var(--white);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    overflow: hidden;
+    animation: modalSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes modalSlideIn {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.history-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    border-bottom: 1px solid #f1f5f9;
+    background: #fafaf9;
+}
+.history-modal-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    font-weight: 700;
+}
+.btn-close-modal {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #94a3b8;
+    line-height: 1;
+    transition: 0.2s;
+}
+.btn-close-modal:hover {
+    color: #475569;
+}
+.history-modal-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: 75vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+.modal-meta-group {
+    background: #f8fafc;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #f1f5f9;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #475569;
+}
+.modal-section-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+.modal-items-box {
+    background: #f8fafc;
+    padding: 14px;
+    border-radius: 10px;
+    border: 1px solid #f1f5f9;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.modal-item-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+.modal-item-price {
+    color: #64748b;
+    font-weight: 500;
+}
+.modal-text-box {
+    background: #f8fafc;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #f1f5f9;
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+.modal-total-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid #f1f5f9;
+}
+.modal-total-box span {
+    font-size: 0.95rem;
+    color: #475569;
+    font-weight: 500;
+}
+.modal-total-box strong {
+    font-size: 1.4rem;
+    color: var(--primary);
+    font-weight: 800;
+}
+@media (max-width: 768px) {
+    .history-header-card {
+        top: 16px;
+        padding: 16px 20px;
+    }
+    .history-list {
+        grid-template-columns: 1fr;
+    }
+    .history-title-embedded {
+        font-size: 1.25rem;
+    }
+}

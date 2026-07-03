@@ -10,31 +10,54 @@
     <link rel="stylesheet" href="../css/User/checkout.css">
 </head>
 <body class="checkout-body-bg">
-    <nav class="checkout-top-nav">
-        <button class="btn-circle-back" onclick="window.history.back()">
-            <i class="fas fa-arrow-left"></i>
-        </button>
-        <h2 class="checkout-title">Konfirmasi Pesanan</h2>
-    </nav>
-
     <div class="checkout-container">
+        <header class="checkout-header-card">
+            <button class="btn-circle-back-embedded" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="checkout-title-embedded">Konfirmasi Pesanan</h1>
+        </header>
+
         <div class="checkout-section">
             <h3 class="checkout-section-title"><i class="fas fa-map-marker-alt"></i> Alamat Pengiriman</h3>
-            <textarea id="deliveryAddress" class="checkout-input" rows="3" placeholder="Masukkan alamat lengkap pengiriman..."></textarea>
+            <div class="address-card-dummy">
+                <div class="address-header">
+                    <span class="address-badge">Alamat Utama</span>
+                </div>
+                <p class="address-user-name">Budi Santoso <span class="address-phone">(+62) 812-3456-7890</span></p>
+                <p class="address-details">Jl. Merdeka No. 123, Kel. Suka Maju, Kec. Cerdas, Kota Surakarta, Jawa Tengah, 57123</p>
+            </div>
+            <textarea id="deliveryAddress" style="display:none;">Jl. Merdeka No. 123, Kel. Suka Maju, Kec. Cerdas, Kota Surakarta, Jawa Tengah, 57123</textarea>
         </div>
 
-        <div class="checkout-section">
+        <div class="checkout-section shadow-smooth">
             <h3 class="checkout-section-title"><i class="fas fa-shopping-bag"></i> Ringkasan Pesanan</h3>
             <div id="checkoutItemsContainer" class="checkout-items-list"></div>
         </div>
 
         <div class="checkout-section">
             <h3 class="checkout-section-title"><i class="fas fa-wallet"></i> Metode Pembayaran</h3>
-            <select id="paymentMethod" class="checkout-select">
-                <option value="Cash on Delivery (COD)">Cash on Delivery (COD)</option>
-                <option value="Transfer Bank">Transfer Bank</option>
-                <option value="QRIS">QRIS</option>
-            </select>
+            <div class="payment-methods-grid">
+                <div class="payment-card active" onclick="selectPaymentMethod(this, 'Cash on Delivery (COD)')">
+                    <div class="payment-icon-box">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <span class="payment-label">Cash on Delivery</span>
+                </div>
+                <div class="payment-card" onclick="selectPaymentMethod(this, 'Transfer Bank')">
+                    <div class="payment-icon-box">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <span class="payment-label">Transfer Bank</span>
+                </div>
+                <div class="payment-card" onclick="selectPaymentMethod(this, 'QRIS')">
+                    <div class="payment-icon-box">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <span class="payment-label">QRIS</span>
+                </div>
+            </div>
+            <input type="hidden" id="paymentMethod" value="Cash on Delivery (COD)">
         </div>
     </div>
 
@@ -45,7 +68,37 @@
         </div>
         <button class="btn-confirm-order" id="btnConfirmOrder">BUAT PESANAN</button>
     </div>
+    <script src="../js/User/auth.js"></script>
+    <script src="../js/User/checkout.js"></script>
+    <script>
+        function selectPaymentMethod(element, value) {
+            document.querySelectorAll('.payment-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+            document.getElementById('paymentMethod').value = value;
+        }
 
-    <script src="../js/user.js"></script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('checkoutItemsContainer');
+            if (container) {
+                const observer = new MutationObserver((mutations) => {
+                    mutations.forEach((mutation) => {
+                        if (mutation.addedNodes.length > 0) {
+                            const items = container.querySelectorAll('.checkout-item');
+                            items.forEach(item => {
+                                const p = item.querySelector('.checkout-item-info p');
+                                if (p && p.textContent.includes('@')) {
+                                    let parts = p.textContent.split('@');
+                                    let qty = parts[0].trim();
+                                    let price = parts[1].trim();
+                                    p.innerHTML = `<div class="item-meta-row"><span class="qty-badge"><i class="fas fa-box"></i> ${qty}</span> <span class="price-unit">${price}/item</span></div>`;
+                                }
+                            });
+                        }
+                    });
+                });
+                observer.observe(container, { childList: true });
+            }
+        });
+    </script>
 </body>
 </html>

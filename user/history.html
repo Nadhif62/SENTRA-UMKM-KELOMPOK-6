@@ -1,1 +1,47 @@
-<!DOCTYPE html><html><head><title>History</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Pesanan - Sentra UMKM</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/User/history.css">
+</head>
+<body class="history-body-bg">
+    <div class="history-container">
+        <header class="history-header-card">
+            <button class="btn-circle-back-embedded" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="history-title-embedded">Riwayat Pesanan</h1>
+        </header>
+
+        <div class="history-content">
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <div class="empty-icon-wrap">
+                    <i class="fas fa-receipt"></i>
+                </div>
+                <h3>Belum ada pesanan</h3>
+                <p>Anda belum melakukan pemesanan apa pun. Yuk, mulai belanja di Sentra UMKM!</p>
+                <button class="btn-shop-now" onclick="window.location.href='index.html'">Belanja Sekarang</button>
+            </div>
+            
+            <div id="historyListContainer" class="history-list"></div>
+        </div>
+    </div>
+
+    <div id="orderDetailModal" class="history-modal" style="display: none;">
+        <div class="history-modal-content">
+            <div class="history-modal-header">
+                <h3>Detail Pesanan</h3>
+                <button class="btn-close-modal" onclick="closeOrderDetailModal()">&times;</button>
+            </div>
+            <div class="history-modal-body" id="modalBodyContent"></div>
+        </div>
+    </div>
+    <script src="../js/User/auth.js"></script>
+    <script src="../js/User/history.js"></script>
+</body>
+</html>

@@ -34,7 +34,7 @@
         </nav>
 
         <div class="sidebar-footer">
-            <a href="../index.html" class="btn-logout">
+            <a href="#" class="btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Keluar
             </a>
         </div>
@@ -59,11 +59,6 @@
                         <i class="fas fa-search"></i>
                         <input type="text" placeholder="Cari nama produk...">
                     </div>
-                    <select class="category-select">
-                        <option value="">Semua Tenant</option>
-                        <option value="1">Ayam Bakar Pak Kumis</option>
-                        <option value="2">Es Boba Kekinian</option>
-                    </select>
                 </div>
                 <button class="btn-add">
                     <i class="fas fa-plus"></i> Tambah Produk
@@ -74,43 +69,39 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Foto</th>
+                            <th>ID</th>
                             <th>Nama Produk</th>
-                            <th>Tenant</th>
+                            <th>Nama Tenant (ID)</th>
                             <th>Harga</th>
-                            <th>Stok</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=100" alt="Ayam" class="product-img"></td>
+                            <td>1</td>
                             <td><strong>Ayam Bakar Madu</strong></td>
-                            <td>Ayam Bakar Pak Kumis</td>
+                            <td>Ayam Bakar Bu Sri (Tenant 1)</td>
                             <td>Rp 25.000</td>
-                            <td><span class="stock-label">45</span></td>
                             <td class="action-buttons">
                                 <button class="btn-edit"><i class="fas fa-edit"></i></button>
                                 <button class="btn-delete"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                         <tr>
-                            <td><img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=100" alt="Boba" class="product-img"></td>
+                            <td>2</td>
                             <td><strong>Boba Brown Sugar</strong></td>
-                            <td>Es Boba Kekinian</td>
+                            <td>Boba Time Kekinian (Tenant 8)</td>
                             <td>Rp 18.000</td>
-                            <td><span class="stock-label alert">5</span></td>
                             <td class="action-buttons">
                                 <button class="btn-edit"><i class="fas fa-edit"></i></button>
                                 <button class="btn-delete"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                         <tr>
-                            <td><img src="https://images.unsplash.com/photo-1599490659213-e2b9527bb087?w=100" alt="Kripik" class="product-img"></td>
+                            <td>3</td>
                             <td><strong>Kripik Tempe Renyah</strong></td>
-                            <td>Oleh-Oleh Marni</td>
+                            <td>Pusat Oleh-Oleh Mbok Giyem (Tenant 2)</td>
                             <td>Rp 15.000</td>
-                            <td><span class="stock-label empty">0</span></td>
                             <td class="action-buttons">
                                 <button class="btn-edit"><i class="fas fa-edit"></i></button>
                                 <button class="btn-delete"><i class="fas fa-trash"></i></button>

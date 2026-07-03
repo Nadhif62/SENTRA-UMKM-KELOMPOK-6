@@ -1,1 +1,86 @@
-<!DOCTYPE html><html><head><title>Profile</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - Sentra UMKM</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/User/profile.css">
+</head>
+<body class="profil-body-bg">
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="profil-container">
+        <header class="profil-header-card">
+            <button class="btn-circle-back-embedded" onclick="window.history.back()">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+            <h1 class="profil-title-embedded">Profil Pengguna</h1>
+        </header>
+
+        <div class="profil-layout">
+            <aside class="profil-sidebar-card">
+                <div class="avatar-wrapper">
+                    <img id="profileAvatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23cbd5e1'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z'/></svg>" alt="Foto Profil">
+                </div>
+                <h2 id="sidebarUserName" class="sidebar-user-name">-</h2>
+                <p id="sidebarUserEmail" class="sidebar-user-email">-</p>
+                <button id="btnToggleEdit" class="btn-action-profile" onclick="toggleEditMode()">
+                    <i class="fas fa-edit"></i> Edit Profil
+                </button>
+                <button id="btnCancelEdit" class="btn-action-profile btn-cancel" onclick="cancelEditMode()" style="display: none;">
+                    <i class="fas fa-times"></i> Batal
+                </button>
+            </aside>
+
+            <main class="profil-main-card">
+                <form id="profileForm" onsubmit="saveProfileData(event)">
+                    <div class="form-grid">
+                        <div class="profile-input-group">
+                            <label for="profName">Nama Lengkap</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="profName" required disabled>
+                            </div>
+                        </div>
+
+                        <div class="profile-input-group">
+                            <label for="profEmail">Alamat Email</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="profEmail" required disabled>
+                            </div>
+                        </div>
+
+                        <div class="profile-input-group">
+                            <label for="profPhone">Nomor Telepon</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-phone"></i>
+                                <input type="tel" id="profPhone" placeholder="Contoh: 08123456789" disabled>
+                            </div>
+                        </div>
+
+                        <div class="profile-input-group full-width">
+                            <label for="profAddress">Alamat Lengkap</label>
+                            <div class="input-with-icon items-start">
+                                <i class="fas fa-map-marker-alt icon-textarea"></i>
+                                <textarea id="profAddress" rows="4" placeholder="Masukkan alamat lengkap pengiriman..." disabled></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-form-footer" id="formFooterAction" style="display: none;">
+                        <button type="submit" class="btn-save-profile">
+                            <i class="fas fa-save"></i> Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
+            </main>
+        </div>
+    </div>
+    <script src="../js/User/auth.js"></script>
+    <script src="../js/User/profile.js"></script>
+</body>
+</html>
