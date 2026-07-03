@@ -1,1 +1,103 @@
-<!DOCTYPE html><html><head><title>Dashboard</title></head><body></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Sentra - Dashboard</title>
+    <link rel="stylesheet" href="../Css/Admin/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <i class="fa-solid fa-utensils"></i>
+            <h2>Admin Sentra</h2>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+            <a href="tenant.html" class="nav-item">
+                <i class="fas fa-store"></i> Data Tenant
+            </a>
+            <a href="produk.html" class="nav-item">
+                <i class="fas fa-hamburger"></i> Data Produk
+            </a>
+            <a href="transaksi.html" class="nav-item">
+                <i class="fas fa-shopping-cart"></i> Data Transaksi
+            </a>
+            <a href="laporan.html" class="nav-item">
+                <i class="fas fa-chart-line"></i> Laporan Penjualan
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="keluar.html" class="btn-logout">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+            </a>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="content-header">
+            <h1>Ringkasan Dashboard</h1>
+            <div class="user-profile">
+                <div class="user-info">
+                    <span class="user-name">Super Admin</span>
+                    <span class="user-role">Pengelola Sentra</span>
+                </div>
+                <div class="avatar">SA</div>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="card card-orange">
+                <div class="card-icon"><i class="fas fa-store"></i></div>
+                <div class="card-details">
+                    <h3>Total Tenant</h3>
+                    <p class="card-value">12</p>
+                    <span class="card-trend trend-up"><i class="fas fa-arrow-up"></i> 2 Tenant Baru</span>
+                </div>
+            </div>
+
+            <div class="card card-green">
+                <div class="card-icon"><i class="fas fa-shopping-cart"></i></div>
+                <div class="card-details">
+                    <h3>Transaksi Hari Ini</h3>
+                    <p class="card-value">48</p>
+                    <span class="card-trend trend-stable"><i class="fas fa-minus"></i> Stabil</span>
+                </div>
+            </div>
+
+            <div class="card card-pink">
+                <div class="card-icon"><i class="fas fa-wallet"></i></div>
+                <div class="card-details">
+                    <h3>Pendapatan Hari Ini</h3>
+                    <p class="card-value">Rp 1.250.000</p>
+                    <span class="card-trend trend-up"><i class="fas fa-arrow-up"></i> +15% dari kemarin</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="sales-statistics">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h2>Grafik Penjualan Minggu Ini</h2>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="salesChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script src="../js/admin.js"></script>
+</body>
+</html>
