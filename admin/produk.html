@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Sentra - Data Produk</title>
-    <link rel="stylesheet" href="../css/Admin/produk.css">
+    <link rel="stylesheet" href="../Css/Admin/produk.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -42,7 +42,7 @@
 
     <main class="main-content">
         <header class="content-header">
-            <h1>Manajemen Data Produk</h1>
+            <h1>Data Produk & Menu</h1>
             <div class="user-profile">
                 <div class="user-info">
                     <span class="user-name">Super Admin</span>
@@ -57,8 +57,14 @@
                 <div class="filter-group">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Cari nama produk...">
+                        <input type="text" placeholder="Cari nama produk / tenant...">
                     </div>
+                    <select class="filter-select">
+                        <option value="">Semua Kategori</option>
+                        <option value="makanan">Makanan</option>
+                        <option value="minuman">Minuman</option>
+                        <option value="cemilan">Cemilan</option>
+                    </select>
                 </div>
                 <button class="btn-add">
                     <i class="fas fa-plus"></i> Tambah Produk
@@ -69,28 +75,53 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>ID Produk</th>
                             <th>Nama Produk</th>
-                            <th>Nama Tenant (ID)</th>
-                            <th>Harga</th>
+                            <th>Nama Tenant</th>
+                            <th>Kategori</th>
+                            <th>Harga Jual (Final)</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
+                            <td>#PRD-101</td>
                             <td><strong>Ayam Bakar Madu</strong></td>
-                            <td>Ayam Bakar Bu Sri (Tenant 1)</td>
+                            <td>Ayam Bakar Bu Sri</td>
+                            <td><span class="badge badge-makanan">Makanan</span></td>
                             <td>Rp 25.000</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete" title="Hapus"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-105</td>
+                            <td><strong>Es Teh Manis</strong></td>
+                            <td>Ayam Bakar Bu Sri</td>
+                            <td><span class="badge badge-minuman">Minuman</span></td>
+                            <td>Rp 5.000</td>
                             <td class="action-buttons">
                                 <button class="btn-edit"><i class="fas fa-edit"></i></button>
                                 <button class="btn-delete"><i class="fas fa-trash"></i></button>
                             </td>
                         </tr>
                         <tr>
-                            <td>2</td>
-                            <td><strong>Boba Brown Sugar</strong></td>
-                            <td>Boba Time Kekinian (Tenant 8)</td>
+                            <td>#PRD-201</td>
+                            <td><strong>Keripik Tempe Super</strong></td>
+                            <td>Pusat Oleh-Oleh Mbok Giyem</td>
+                            <td><span class="badge badge-makanan">Makanan</span></td>
+                            <td>Rp 15.000</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-301</td>
+                            <td><strong>Kopi Susu Gula Aren</strong></td>
+                            <td>Kedai Kopi Pak Kumis</td>
+                            <td><span class="badge badge-minuman">Minuman</span></td>
                             <td>Rp 18.000</td>
                             <td class="action-buttons">
                                 <button class="btn-edit"><i class="fas fa-edit"></i></button>
@@ -98,10 +129,66 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>3</td>
-                            <td><strong>Kripik Tempe Renyah</strong></td>
-                            <td>Pusat Oleh-Oleh Mbok Giyem (Tenant 2)</td>
-                            <td>Rp 15.000</td>
+                            <td>#PRD-402</td>
+                            <td><strong>Sate Ayam Madura</strong></td>
+                            <td>Warung Sate Khas Madura Cak Malik</td>
+                            <td><span class="badge badge-makanan">Makanan</span></td>
+                            <td>Rp 28.000</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-505</td>
+                            <td><strong>Jus Detox ABC</strong></td>
+                            <td>Dapur Organik Sehat Mama</td>
+                            <td><span class="badge badge-minuman">Minuman</span></td>
+                            <td>Rp 20.000</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-601</td>
+                            <td><strong>Pizza Meat Lover</strong></td>
+                            <td>Kedai Pizza Italia Wong Kito</td>
+                            <td><span class="badge badge-makanan">Makanan</span></td>
+                            <td>Rp 50.000</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-701</td>
+                            <td><strong>Salad Buah Premium</strong></td>
+                            <td>Salad & Juice Bar Premium</td>
+                            <td><span class="badge badge-cemilan">Cemilan</span></td>
+                            <td>Rp 26.000</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-801</td>
+                            <td><strong>Brown Sugar Boba Milk</strong></td>
+                            <td>Boba Time Kekinian</td>
+                            <td><span class="badge badge-minuman">Minuman</span></td>
+                            <td>Rp 18.000</td>
+                            <td class="action-buttons">
+                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
+                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#PRD-1201</td>
+                            <td><strong>Iga Bakar Kecap Hot</strong></td>
+                            <td>Iga Bakar Cobek Si Jangkung</td>
+                            <td><span class="badge badge-makanan">Makanan</span></td>
+                            <td>Rp 55.000</td>
                             <td class="action-buttons">
                                 <button class="btn-edit"><i class="fas fa-edit"></i></button>
                                 <button class="btn-delete"><i class="fas fa-trash"></i></button>

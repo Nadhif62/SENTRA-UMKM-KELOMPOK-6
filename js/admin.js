@@ -208,6 +208,35 @@ document.addEventListener("DOMContentLoaded", function () {
           category: "minuman",
         },
       ],
+      4: [
+        { id: 401, name: "Sate Madura Spesial", desc: "Sate madura empuk dengan bumbu kacang kental.", likes: 180, priceOriginal: 25000, priceFinal: 22000, img: "", category: "makanan" },
+        { id: 402, name: "Nasi Campur Jawa", desc: "Nasi campur dengan lauk komplet dan sambal khas.", likes: 95, priceOriginal: 20000, priceFinal: 18000, img: "", category: "makanan" }
+      ],
+      5: [
+        { id: 501, name: "Salad Buah Organik", desc: "Salad buah segar dengan dressing ringan.", likes: 70, priceOriginal: 35000, priceFinal: 30000, img: "", category: "makanan" }
+      ],
+      6: [
+        { id: 601, name: "Pizza Mini Klasik", desc: "Pizza ukuran kecil dengan topping keju melimpah.", likes: 210, priceOriginal: 45000, priceFinal: 40000, img: "", category: "makanan" }
+      ],
+      7: [
+        { id: 701, name: "Salad Protein", desc: "Salad sehat kaya protein dan dressing pilihan.", likes: 60, priceOriginal: 28000, priceFinal: 25000, img: "", category: "makanan" }
+      ],
+      8: [
+        { id: 801, name: "Boba Brown Sugar", desc: "Boba manis dengan sentuhan gula aren.", likes: 420, priceOriginal: 20000, priceFinal: 18000, img: "", category: "minuman" },
+        { id: 802, name: "Snack Goreng Renyah", desc: "Cemilan krispi untuk menemani minum.", likes: 130, priceOriginal: 15000, priceFinal: 12000, img: "", category: "makanan" }
+      ],
+      9: [
+        { id: 901, name: "Mie Ayam Spesial", desc: "Mie ayam dengan kuah pekat dan topping melimpah.", likes: 300, priceOriginal: 20000, priceFinal: 18000, img: "", category: "makanan" }
+      ],
+      10: [
+        { id: 1001, name: "Soto Lamongan", desc: "Soto dengan koya gurih dan suwiran ayam.", likes: 240, priceOriginal: 22000, priceFinal: 20000, img: "", category: "makanan" }
+      ],
+      11: [
+        { id: 1101, name: "Burger Daging Premium", desc: "Burger dengan patty tebal dan keju leleh.", likes: 310, priceOriginal: 32000, priceFinal: 30000, img: "", category: "makanan" }
+      ],
+      12: [
+        { id: 1201, name: "Iga Bakar Saus Sambal", desc: "Iga bakar empuk dengan saus pedas manis.", likes: 260, priceOriginal: 48000, priceFinal: 45000, img: "", category: "makanan" }
+      ]
     };
     localStorage.setItem("tenantMenusData", JSON.stringify(defaultMenus));
   }
