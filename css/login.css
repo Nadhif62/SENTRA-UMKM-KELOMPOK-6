@@ -1,1 +1,193 @@
 /* Login styles */
+/* --- RESET & FONT BASE --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #F8F9FA;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* --- LOGIN CONTAINER --- */
+.auth-container {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 400px;
+    padding: 40px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-header i {
+    font-size: 3rem;
+    color: #A65D24;
+    margin-bottom: 10px;
+}
+
+.auth-header h2 {
+    font-size: 1.5rem;
+    color: #2C3E50;
+    font-weight: 700;
+}
+
+.auth-header p {
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* --- FORM STYLES --- */
+.form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid #EAEAEA;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    background-color: #F8F9FA;
+}
+
+.form-group input:focus {
+    border-color: #A65D24;
+    background-color: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(166, 93, 36, 0.1);
+}
+
+.form-group i {
+    position: absolute;
+    bottom: 14px;
+    left: 15px;
+    color: #A65D24;
+    font-size: 1rem;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: #A65D24;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #8A4D1E;
+}
+
+/* --- TOGGLE LOGIN/REGISTER --- */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.auth-footer a {
+    color: #A65D24;
+    text-decoration: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+#register-form-section {
+    display: none;
+}
+
+/* --- TOAST POPUP NOTIFICATION --- */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background-color: #fff;
+    color: #333;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 250px;
+    transform: translateX(120%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.toast.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.toast.error {
+    border-left: 5px solid #DC3545;
+}
+
+.toast.error i {
+    color: #DC3545;
+}
+
+.toast.success {
+    border-left: 5px solid #1EAD4C;
+}
+
+.toast.success i {
+    color: #1EAD4C;
+}
+
+.toast-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.toast-content strong {
+    font-size: 0.95rem;
+}
+
+.toast-content span {
+    font-size: 0.85rem;
+    color: #666;
+}
