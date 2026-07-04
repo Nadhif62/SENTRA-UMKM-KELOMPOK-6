@@ -6,6 +6,75 @@
     <title>Admin Sentra - Data Produk</title>
     <link rel="stylesheet" href="../css/Admin/produk.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Modal Tambah Produk */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.55);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+        }
+        .modal-box {
+            background: #fff;
+            border-radius: 14px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px 26px;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+        }
+        .modal-box h2 {
+            margin: 0 0 18px;
+            font-size: 1.25rem;
+            color: #1EAD4C;
+        }
+        .form-group { margin-bottom: 14px; }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #334155;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="url"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 9px 11px;
+            border: 1px solid #d6dce3;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-group textarea { resize: vertical; min-height: 60px; }
+        .form-row { display: flex; gap: 12px; }
+        .form-row .form-group { flex: 1; }
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 18px;
+        }
+        .btn-modal-cancel, .btn-modal-submit {
+            padding: 9px 18px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-modal-cancel { background: #eef1f4; color: #475569; }
+        .btn-modal-submit { background: #1EAD4C; color: #fff; }
+        .btn-modal-submit:hover { background: #189940; }
+    </style>
 </head>
 <body>
 
@@ -66,7 +135,7 @@
                         <option value="cemilan">Cemilan</option>
                     </select>
                 </div>
-                <button class="btn-add">
+                <button class="btn-add" id="btnTambahProduk">
                     <i class="fas fa-plus"></i> Tambah Produk
                 </button>
             </div>
@@ -83,123 +152,71 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>#PRD-101</td>
-                            <td><strong>Ayam Bakar Madu</strong></td>
-                            <td>Ayam Bakar Bu Sri</td>
-                            <td><span class="badge badge-makanan">Makanan</span></td>
-                            <td>Rp 25.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit" title="Edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete" title="Hapus"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-105</td>
-                            <td><strong>Es Teh Manis</strong></td>
-                            <td>Ayam Bakar Bu Sri</td>
-                            <td><span class="badge badge-minuman">Minuman</span></td>
-                            <td>Rp 5.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-201</td>
-                            <td><strong>Keripik Tempe Super</strong></td>
-                            <td>Pusat Oleh-Oleh Mbok Giyem</td>
-                            <td><span class="badge badge-makanan">Makanan</span></td>
-                            <td>Rp 15.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-301</td>
-                            <td><strong>Kopi Susu Gula Aren</strong></td>
-                            <td>Kedai Kopi Pak Kumis</td>
-                            <td><span class="badge badge-minuman">Minuman</span></td>
-                            <td>Rp 18.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-402</td>
-                            <td><strong>Sate Ayam Madura</strong></td>
-                            <td>Warung Sate Khas Madura Cak Malik</td>
-                            <td><span class="badge badge-makanan">Makanan</span></td>
-                            <td>Rp 28.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-505</td>
-                            <td><strong>Jus Detox ABC</strong></td>
-                            <td>Dapur Organik Sehat Mama</td>
-                            <td><span class="badge badge-minuman">Minuman</span></td>
-                            <td>Rp 20.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-601</td>
-                            <td><strong>Pizza Meat Lover</strong></td>
-                            <td>Kedai Pizza Italia Wong Kito</td>
-                            <td><span class="badge badge-makanan">Makanan</span></td>
-                            <td>Rp 50.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-701</td>
-                            <td><strong>Salad Buah Premium</strong></td>
-                            <td>Salad & Juice Bar Premium</td>
-                            <td><span class="badge badge-cemilan">Cemilan</span></td>
-                            <td>Rp 26.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-801</td>
-                            <td><strong>Brown Sugar Boba Milk</strong></td>
-                            <td>Boba Time Kekinian</td>
-                            <td><span class="badge badge-minuman">Minuman</span></td>
-                            <td>Rp 18.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>#PRD-1201</td>
-                            <td><strong>Iga Bakar Kecap Hot</strong></td>
-                            <td>Iga Bakar Cobek Si Jangkung</td>
-                            <td><span class="badge badge-makanan">Makanan</span></td>
-                            <td>Rp 55.000</td>
-                            <td class="action-buttons">
-                                <button class="btn-edit"><i class="fas fa-edit"></i></button>
-                                <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                            </td>
-                        </tr>
+                    <tbody id="produkTableBody">
                     </tbody>
                 </table>
             </div>
         </section>
     </main>
 
+    <!-- Modal Tambah Produk -->
+    <div class="modal-overlay" id="modalTambahProduk">
+        <div class="modal-box">
+            <h2><i class="fas fa-hamburger"></i> Tambah Produk Baru</h2>
+            <form id="formTambahProduk">
+                <div class="form-group">
+                    <label for="inputProdukTenant">Tenant</label>
+                    <select id="inputProdukTenant" required>
+                        <option value="" disabled selected>-- Pilih Tenant --</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputProdukName">Nama Produk</label>
+                    <input type="text" id="inputProdukName" required placeholder="Contoh: Es Kopi Susu">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputProdukDesc">Deskripsi Singkat</label>
+                    <textarea id="inputProdukDesc" placeholder="Deskripsi rasa/bahan produk..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputProdukCategory">Kategori</label>
+                        <select id="inputProdukCategory">
+                            <option value="makanan">Makanan</option>
+                            <option value="minuman">Minuman</option>
+                            <option value="cemilan">Cemilan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="inputProdukHargaAsli">Harga Asli (Rp)</label>
+                        <input type="number" id="inputProdukHargaAsli" min="0" step="500" placeholder="Contoh: 20000">
+                    </div>
+                    <div class="form-group">
+                        <label for="inputProdukHargaJual">Harga Jual / Final (Rp)</label>
+                        <input type="number" id="inputProdukHargaJual" min="0" step="500" required placeholder="Contoh: 18000">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputProdukImgUrl">URL Gambar (opsional)</label>
+                    <input type="url" id="inputProdukImgUrl" placeholder="https://...">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn-modal-cancel" id="btnBatalProduk">Batal</button>
+                    <button type="submit" class="btn-modal-submit">Simpan Produk</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/shared-data.js"></script>
     <script src="../js/admin.js"></script>
 </body>
 </html>

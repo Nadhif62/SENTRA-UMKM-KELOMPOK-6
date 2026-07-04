@@ -1,247 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   if (
-    !localStorage.getItem("tenants") ||
-    JSON.parse(localStorage.getItem("tenants")).length === 0
-  ) {
-    const defaultTenants = [
-      {
-        id: 1,
-        name: "Ayam Bakar Bu Sri",
-        desc: "Spesialis ayam bakar madu bumbu meresap dan aneka sambal Nusantara sejak 1999.",
-        img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=500&q=60",
-        isPromo: true,
-        promoBadge: "Diskon 25%",
-        rating: 4.8,
-        price: 25000,
-        category: "makanan",
-      },
-      {
-        id: 2,
-        name: "Pusat Oleh-Oleh Mbok Giyem",
-        desc: "Menyediakan aneka keripik tempe, singkong, pisang lumer, dan buah kering renyah.",
-        img: "https://images.unsplash.com/photo-1599490659213-e2b9527bb087?auto=format&fit=crop&w=500&q=60",
-        isPromo: false,
-        promoBadge: "",
-        rating: 4.6,
-        price: 15000,
-        category: "makanan",
-      },
-      {
-        id: 3,
-        name: "Kedai Kopi Pak Kumis",
-        desc: "Kopi Nusantara racikan mantap untuk teman nongkrong.",
-        img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=60",
-        isPromo: true,
-        promoBadge: "Beli 1 Gratis 1",
-        rating: 4.9,
-        price: 18000,
-        category: "minuman",
-      },
-      {
-        id: 4,
-        name: "Warung Sate Khas Madura Cak Malik",
-        desc: "Sate ayam dan kambing dengan bumbu kacang kental asli Madura.",
-        img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=60",
-        isPromo: false,
-        promoBadge: "",
-        rating: 4.7,
-        price: 30000,
-        category: "makanan",
-      },
-      {
-        id: 5,
-        name: "Dapur Organik Sehat Mama",
-        desc: "Menu sehat dari bahan organik segar tanpa MSG.",
-        img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=60",
-        isPromo: true,
-        promoBadge: "Diskon 10%",
-        rating: 4.8,
-        price: 35000,
-        category: "makanan",
-      },
-      {
-        id: 6,
-        name: "Kedai Pizza Italia Wong Kito",
-        desc: "Pizza otentik dengan kearifan lokal rasa Nusantara.",
-        img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60",
-        isPromo: false,
-        promoBadge: "",
-        rating: 4.5,
-        price: 45000,
-        category: "makanan",
-      },
-      {
-        id: 7,
-        name: "Salad & Juice Bar Premium",
-        desc: "Pilihan salad segar dan jus murni kaya nutrisi.",
-        img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=60",
-        isPromo: true,
-        promoBadge: "Free Topping",
-        rating: 4.7,
-        price: 28000,
-        category: "minuman",
-      },
-      {
-        id: 8,
-        name: "Boba Time Kekinian",
-        desc: "Minuman boba manis segar dengan varian rasa hits.",
-        img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=500&q=60",
-        isPromo: false,
-        promoBadge: "",
-        rating: 4.4,
-        price: 18000,
-        category: "minuman",
-      },
-      {
-        id: 9,
-        name: "Mie Ayam & Bakso Solo Mas Dino",
-        desc: "Mie kenyal buatan sendiri dipadu bakso daging sapi asli Solo.",
-        img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=500&q=60",
-        isPromo: true,
-        promoBadge: "Porsi Jumbo",
-        rating: 4.8,
-        price: 20000,
-        category: "makanan",
-      },
-      {
-        id: 10,
-        name: "Soto Lamongan Asli Cak Jono",
-        desc: "Soto ayam kuah kental dengan koya gurih melimpah.",
-        img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=60",
-        isPromo: false,
-        promoBadge: "",
-        rating: 4.6,
-        price: 22000,
-        category: "makanan",
-      },
-      {
-        id: 11,
-        name: "Burger Corner & Grill",
-        desc: "Burger daging panggang tebal dengan keju lumer berkualitas.",
-        img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=60",
-        isPromo: true,
-        promoBadge: "Free Drink",
-        rating: 4.7,
-        price: 32000,
-        category: "makanan",
-      },
-      {
-        id: 12,
-        name: "Iga Bakar Cobek Si Jangkung",
-        desc: "Iga sapi empuk dibakar langsung di atas cobek tanah liat.",
-        img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=60",
-        isPromo: false,
-        promoBadge: "",
-        rating: 4.9,
-        price: 48000,
-        category: "makanan",
-      },
-    ];
-    localStorage.setItem("tenants", JSON.stringify(defaultTenants));
-  }
-
-  if (!localStorage.getItem("tenantMenusData")) {
-    const defaultMenus = {
-      1: [
-        {
-          id: 101,
-          name: "Ayam Bakar Madu",
-          desc: "Ayam bakar dengan olesan madu murni manis gurih meresap.",
-          likes: 124,
-          priceOriginal: 30000,
-          priceFinal: 25000,
-          img: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?auto=format&fit=crop&w=500&q=60",
-          category: "makanan",
-        },
-        {
-          id: 102,
-          name: "Ayam Goreng Lengkuas",
-          desc: "Ayam goreng renyah bertabur kremesan lengkuas gurih.",
-          likes: 85,
-          priceOriginal: 28000,
-          priceFinal: 24000,
-          img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=60",
-          category: "makanan",
-        },
-        {
-          id: 105,
-          name: "Es Teh Manis",
-          desc: "Teh melati seduh murni segar dingin.",
-          likes: 131,
-          priceOriginal: 7000,
-          priceFinal: 5000,
-          img: "https://images.unsplash.com/photo-1514516345957-556ca7d90a29?auto=format&fit=crop&w=500&q=60",
-          category: "minuman",
-        },
-      ],
-      2: [
-        {
-          id: 201,
-          name: "Keripik Tempe Super",
-          desc: "Keripik tempe renyah diiris tipis dengan racikan ketumbar asli.",
-          likes: 250,
-          priceOriginal: 20000,
-          priceFinal: 15000,
-          img: "https://images.unsplash.com/photo-1599490659213-e2b9527bb087?auto=format&fit=crop&w=500&q=60",
-          category: "makanan",
-        },
-        {
-          id: 202,
-          name: "Pisang Lumer Cokelat",
-          desc: "Pisang kepok balut kulit lumpia renyah isian cokelat.",
-          likes: 195,
-          priceOriginal: 18000,
-          priceFinal: 15000,
-          img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=500&q=60",
-          category: "makanan",
-        },
-      ],
-      3: [
-        {
-          id: 301,
-          name: "Kopi Susu Gula Aren",
-          desc: "Espresso blend dicampur susu segar krimi dan sirup aren.",
-          likes: 550,
-          priceOriginal: 22000,
-          priceFinal: 18000,
-          img: "https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=500&q=60",
-          category: "minuman",
-        },
-      ],
-      4: [
-        { id: 401, name: "Sate Madura Spesial", desc: "Sate madura empuk dengan bumbu kacang kental.", likes: 180, priceOriginal: 25000, priceFinal: 22000, img: "", category: "makanan" },
-        { id: 402, name: "Nasi Campur Jawa", desc: "Nasi campur dengan lauk komplet dan sambal khas.", likes: 95, priceOriginal: 20000, priceFinal: 18000, img: "", category: "makanan" }
-      ],
-      5: [
-        { id: 501, name: "Salad Buah Organik", desc: "Salad buah segar dengan dressing ringan.", likes: 70, priceOriginal: 35000, priceFinal: 30000, img: "", category: "makanan" }
-      ],
-      6: [
-        { id: 601, name: "Pizza Mini Klasik", desc: "Pizza ukuran kecil dengan topping keju melimpah.", likes: 210, priceOriginal: 45000, priceFinal: 40000, img: "", category: "makanan" }
-      ],
-      7: [
-        { id: 701, name: "Salad Protein", desc: "Salad sehat kaya protein dan dressing pilihan.", likes: 60, priceOriginal: 28000, priceFinal: 25000, img: "", category: "makanan" }
-      ],
-      8: [
-        { id: 801, name: "Boba Brown Sugar", desc: "Boba manis dengan sentuhan gula aren.", likes: 420, priceOriginal: 20000, priceFinal: 18000, img: "", category: "minuman" },
-        { id: 802, name: "Snack Goreng Renyah", desc: "Cemilan krispi untuk menemani minum.", likes: 130, priceOriginal: 15000, priceFinal: 12000, img: "", category: "makanan" }
-      ],
-      9: [
-        { id: 901, name: "Mie Ayam Spesial", desc: "Mie ayam dengan kuah pekat dan topping melimpah.", likes: 300, priceOriginal: 20000, priceFinal: 18000, img: "", category: "makanan" }
-      ],
-      10: [
-        { id: 1001, name: "Soto Lamongan", desc: "Soto dengan koya gurih dan suwiran ayam.", likes: 240, priceOriginal: 22000, priceFinal: 20000, img: "", category: "makanan" }
-      ],
-      11: [
-        { id: 1101, name: "Burger Daging Premium", desc: "Burger dengan patty tebal dan keju leleh.", likes: 310, priceOriginal: 32000, priceFinal: 30000, img: "", category: "makanan" }
-      ],
-      12: [
-        { id: 1201, name: "Iga Bakar Saus Sambal", desc: "Iga bakar empuk dengan saus pedas manis.", likes: 260, priceOriginal: 48000, priceFinal: 45000, img: "", category: "makanan" }
-      ]
-    };
-    localStorage.setItem("tenantMenusData", JSON.stringify(defaultMenus));
-  }
-
-  if (
     !localStorage.getItem("products") ||
     JSON.parse(localStorage.getItem("products")).length === 0
   ) {
@@ -253,14 +11,24 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.setItem("products", JSON.stringify(defaultProducts));
   }
 
+  initDashboard();
+  initTenantAdminPage();
+  initProdukAdminPage();
+  initLogout();
+});
+
+
+function initDashboard() {
+  const cards = document.querySelectorAll(".card");
+  if (cards.length === 0 && !document.getElementById("salesChart")) return;
+
   let orders = JSON.parse(localStorage.getItem("orders")) || [];
-  let tenants = JSON.parse(localStorage.getItem("tenants")) || [];
-  let products = JSON.parse(localStorage.getItem("products")) || [];
+  const tenants = getTenants();
+  const totalProduk = getTotalProdukCount();
 
   let totalPendapatan = 0;
   let totalTransaksi = orders.length;
   let totalTenant = tenants.length;
-  let totalProduk = products.length;
 
   orders.forEach((order) => {
     if (order.status !== "Batal" && order.status !== "Dibatalkan") {
@@ -268,9 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  const cards = document.querySelectorAll(".card");
   cards.forEach((card) => {
-    const title = card.querySelector("h3").textContent.trim();
+    const titleEl = card.querySelector("h3");
+    if (!titleEl) return;
+    const title = titleEl.textContent.trim();
     const valueElement = card.querySelector(".card-value");
     if (valueElement) {
       if (title.includes("Tenant")) {
@@ -286,21 +55,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  const logoutBtn = document.querySelector(".btn-logout");
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      const confirmLogout = confirm(
-        "Apakah Anda yakin ingin keluar dari halaman Admin?",
-      );
-      if (confirmLogout) {
-        window.location.replace("../index.html");
-      }
-    });
-  }
-
   const canvas = document.getElementById("salesChart");
-  if (canvas) {
+  if (canvas && window.Chart) {
     let chartLabels = [
       "Senin",
       "Selasa",
@@ -357,4 +113,377 @@ document.addEventListener("DOMContentLoaded", function () {
       },
     });
   }
-});
+}
+
+function initLogout() {
+  const logoutBtn = document.querySelector(".btn-logout");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function (event) {
+      event.preventDefault();
+      const confirmLogout = confirm(
+        "Apakah Anda yakin ingin keluar dari halaman Admin?",
+      );
+      if (confirmLogout) {
+        window.location.replace("../index.html");
+      }
+    });
+  }
+}
+
+function initTenantAdminPage() {
+  const tbody = document.getElementById("tenantTableBody");
+  const btnAdd = document.getElementById("btnTambahTenant");
+  const modal = document.getElementById("modalTambahTenant");
+  if (!tbody || !modal) return; // bukan halaman ini
+
+  const form = document.getElementById("formTambahTenant");
+  const btnCancel = document.getElementById("btnBatalTenant");
+  const fileInput = document.getElementById("inputTenantFile");
+  const urlInput = document.getElementById("inputTenantImgUrl");
+  const preview = document.getElementById("previewTenantImg");
+  const searchInput = document.querySelector(
+    '.table-section .search-box input[type="text"]',
+  );
+
+  function renderTenantTable() {
+    const tenants = getTenants();
+    const query = (searchInput?.value || "").toLowerCase().trim();
+    const filtered = tenants.filter((t) =>
+      t.name.toLowerCase().includes(query),
+    );
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#888;">Belum ada data tenant.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = filtered
+      .map((t, index) => {
+        const kategoriLabel =
+          t.category === "makanan"
+            ? "Makanan"
+            : t.category === "minuman"
+              ? "Minuman"
+              : "Cemilan";
+        return `
+          <tr>
+            <td>${index + 1}</td>
+            <td><strong>${t.name}</strong></td>
+            <td>${kategoriLabel}</td>
+            <td>&#9733; ${t.rating}</td>
+            <td>Rp ${Number(t.price).toLocaleString("id-ID")}</td>
+            <td class="action-buttons">
+              <button class="btn-delete" title="Hapus" data-id="${t.id}"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+        `;
+      })
+      .join("");
+
+    tbody.querySelectorAll(".btn-delete").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = Number(btn.dataset.id);
+        const tenant = getTenants().find((t) => t.id === id);
+        const confirmed = confirm(
+          `Hapus tenant "${tenant ? tenant.name : ""}"? Menu tenant ini juga akan terhapus.`,
+        );
+        if (!confirmed) return;
+
+        const tenants = getTenants().filter((t) => t.id !== id);
+        saveTenants(tenants);
+
+        const menus = getMenus();
+        delete menus[id];
+        saveMenus(menus);
+
+        renderTenantTable();
+      });
+    });
+  }
+
+  function openModal() {
+    modal.style.display = "flex";
+  }
+  function closeModal() {
+    modal.style.display = "none";
+    form.reset();
+    if (preview) {
+      preview.style.display = "none";
+      preview.src = "";
+    }
+  }
+
+  if (btnAdd) btnAdd.addEventListener("click", openModal);
+  if (btnCancel) btnCancel.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  if (fileInput) {
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        if (urlInput) urlInput.value = "";
+        if (preview) {
+          preview.src = reader.result;
+          preview.style.display = "block";
+        }
+        fileInput.dataset.base64 = reader.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  if (urlInput && preview) {
+    urlInput.addEventListener("input", () => {
+      if (urlInput.value.trim()) {
+        preview.src = urlInput.value.trim();
+        preview.style.display = "block";
+        if (fileInput) {
+          fileInput.value = "";
+          delete fileInput.dataset.base64;
+        }
+      }
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("inputTenantName").value.trim();
+      const desc = document.getElementById("inputTenantDesc").value.trim();
+      const category = document.getElementById("inputTenantCategory").value;
+      const rating =
+        parseFloat(document.getElementById("inputTenantRating").value) || 0;
+      const price =
+        parseInt(document.getElementById("inputTenantPrice").value) || 0;
+      const isPromo = document.getElementById("inputTenantIsPromo").checked;
+      const promoBadge = document
+        .getElementById("inputTenantPromoBadge")
+        .value.trim();
+
+      const img =
+        (fileInput && fileInput.dataset.base64) ||
+        (urlInput && urlInput.value.trim()) ||
+        "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=60";
+
+      if (!name) {
+        alert("Nama tenant wajib diisi.");
+        return;
+      }
+
+      const newTenant = {
+        id: getNextTenantId(),
+        name,
+        desc: desc || "-",
+        img,
+        isPromo,
+        promoBadge: isPromo ? promoBadge || "Promo" : "",
+        rating,
+        price,
+        category,
+      };
+
+      const tenants = getTenants();
+      tenants.push(newTenant);
+      saveTenants(tenants);
+
+      const menus = getMenus();
+      if (!menus[newTenant.id]) menus[newTenant.id] = [];
+      saveMenus(menus);
+
+      closeModal();
+      renderTenantTable();
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener("input", renderTenantTable);
+  }
+
+  renderTenantTable();
+}
+
+
+function initProdukAdminPage() {
+  const tbody = document.getElementById("produkTableBody");
+  const btnAdd = document.getElementById("btnTambahProduk");
+  const modal = document.getElementById("modalTambahProduk");
+  if (!tbody || !modal) return; // bukan halaman ini
+
+  const form = document.getElementById("formTambahProduk");
+  const btnCancel = document.getElementById("btnBatalProduk");
+  const tenantSelect = document.getElementById("inputProdukTenant");
+  const searchInput = document.querySelector(
+    '.table-section .search-box input[type="text"]',
+  );
+  const categoryFilter = document.querySelector(".filter-select");
+
+  function badgeClass(cat) {
+    if (cat === "makanan") return "badge-makanan";
+    if (cat === "minuman") return "badge-minuman";
+    return "badge-cemilan";
+  }
+  function badgeLabel(cat) {
+    if (cat === "makanan") return "Makanan";
+    if (cat === "minuman") return "Minuman";
+    return "Cemilan";
+  }
+
+  function flattenProducts() {
+    const tenants = getTenants();
+    const menus = getMenus();
+    const rows = [];
+    Object.keys(menus).forEach((tenantId) => {
+      const tenant = tenants.find((t) => t.id === Number(tenantId));
+      (menus[tenantId] || []).forEach((item) => {
+        rows.push({
+          ...item,
+          tenantId: Number(tenantId),
+          tenantName: tenant ? tenant.name : "(Tenant tidak ditemukan)",
+        });
+      });
+    });
+    return rows.sort((a, b) => a.id - b.id);
+  }
+
+  function renderTenantOptions() {
+    if (!tenantSelect) return;
+    const tenants = getTenants();
+    tenantSelect.innerHTML =
+      '<option value="" disabled selected>-- Pilih Tenant --</option>' +
+      tenants
+        .map((t) => `<option value="${t.id}">${t.name}</option>`)
+        .join("");
+  }
+
+  function renderProdukTable() {
+    let rows = flattenProducts();
+
+    const query = (searchInput?.value || "").toLowerCase().trim();
+    const kategori = categoryFilter?.value || "";
+
+    if (query) {
+      rows = rows.filter(
+        (r) =>
+          r.name.toLowerCase().includes(query) ||
+          r.tenantName.toLowerCase().includes(query),
+      );
+    }
+    if (kategori) {
+      rows = rows.filter((r) => r.category === kategori);
+    }
+
+    if (rows.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:#888;">Belum ada data produk.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = rows
+      .map(
+        (r) => `
+          <tr>
+            <td>#PRD-${r.id}</td>
+            <td><strong>${r.name}</strong></td>
+            <td>${r.tenantName}</td>
+            <td><span class="badge ${badgeClass(r.category)}">${badgeLabel(r.category)}</span></td>
+            <td>Rp ${Number(r.priceFinal).toLocaleString("id-ID")}</td>
+            <td class="action-buttons">
+              <button class="btn-delete" title="Hapus" data-id="${r.id}" data-tenant="${r.tenantId}"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+        `,
+      )
+      .join("");
+
+    tbody.querySelectorAll(".btn-delete").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = Number(btn.dataset.id);
+        const tenantId = Number(btn.dataset.tenant);
+        if (!confirm("Hapus produk ini?")) return;
+
+        const menus = getMenus();
+        menus[tenantId] = (menus[tenantId] || []).filter(
+          (m) => m.id !== id,
+        );
+        saveMenus(menus);
+        renderProdukTable();
+      });
+    });
+  }
+
+  function openModal() {
+    renderTenantOptions();
+    modal.style.display = "flex";
+  }
+  function closeModal() {
+    modal.style.display = "none";
+    form.reset();
+  }
+
+  if (btnAdd) btnAdd.addEventListener("click", openModal);
+  if (btnCancel) btnCancel.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  if (form) {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const tenantId = parseInt(tenantSelect.value);
+      const name = document.getElementById("inputProdukName").value.trim();
+      const desc = document
+        .getElementById("inputProdukDesc")
+        .value.trim();
+      const category = document.getElementById("inputProdukCategory").value;
+      const priceOriginal =
+        parseInt(document.getElementById("inputProdukHargaAsli").value) || 0;
+      const priceFinal =
+        parseInt(document.getElementById("inputProdukHargaJual").value) || 0;
+      const img = document
+        .getElementById("inputProdukImgUrl")
+        .value.trim();
+
+      if (!tenantId) {
+        alert("Silakan pilih tenant terlebih dahulu.");
+        return;
+      }
+      if (!name) {
+        alert("Nama produk wajib diisi.");
+        return;
+      }
+
+      const menus = getMenus();
+      if (!menus[tenantId]) menus[tenantId] = [];
+
+      const newItem = {
+        id: getNextMenuId(tenantId),
+        name,
+        desc: desc || "-",
+        likes: 0,
+        priceOriginal: priceOriginal || priceFinal,
+        priceFinal,
+        img:
+          img ||
+          "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=60",
+        category,
+      };
+
+      menus[tenantId].push(newItem);
+      saveMenus(menus);
+
+      closeModal();
+      renderProdukTable();
+    });
+  }
+
+  if (searchInput) searchInput.addEventListener("input", renderProdukTable);
+  if (categoryFilter)
+    categoryFilter.addEventListener("change", renderProdukTable);
+
+  renderProdukTable();
+}

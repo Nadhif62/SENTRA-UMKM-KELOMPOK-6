@@ -1,5 +1,3 @@
-// Login JS
-// --- LOGIKA TOAST POPUP NOTIFICATION ---
 function showToast(type, title, message) {
   const toastContainer = document.getElementById("toastContainer");
 
@@ -18,34 +16,37 @@ function showToast(type, title, message) {
 
   toastContainer.appendChild(toast);
 
-  // Trigger animasi masuk
   setTimeout(() => {
     toast.classList.add("show");
   }, 10);
 
-  // Hapus otomatis setelah 3.5 detik
   setTimeout(() => {
     toast.classList.remove("show");
     setTimeout(() => {
       toast.remove();
-    }, 400); // Tunggu animasi keluar selesai
+    }, 400);
   }, 3500);
 }
 
-// Helper Validasi Format Email
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
-// --- LOGIKA TOGGLE FORM LOGIN & DAFTAR ---
+function getRegisteredUsers() {
+  return JSON.parse(localStorage.getItem("users")) || [];
+}
+
+function saveRegisteredUsers(users) {
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
 function toggleForm(type) {
   const loginSection = document.getElementById("login-form-section");
   const registerSection = document.getElementById("register-form-section");
   const title = document.getElementById("auth-title");
   const subtitle = document.getElementById("auth-subtitle");
 
-  // Reset input saat ganti form
   document.getElementById("loginForm").reset();
   document.getElementById("registerForm").reset();
 
@@ -62,65 +63,65 @@ function toggleForm(type) {
   }
 }
 
-// --- LOGIKA SUBMIT LOGIN ---
 document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const email = document.getElementById("login-email").value;
+  const email = document.getElementById("login-email").value.trim();
   const password = document.getElementById("login-password").value;
 
-  // 1. Validasi Format Email
   if (!isValidEmail(email)) {
     showToast("error", "Gagal Masuk", "Format email kurang tepat!");
     return;
   }
 
-  // 2. Cek Akun Admin
-  if (email === "admin@umkm.local") {
+  if (email.toLowerCase() === "admin@umkm.local") {
     if (password === "censololeh") {
       showToast("success", "Berhasil", "Masuk sebagai Admin...");
       setTimeout(() => (window.location.href = "admin/dashboard.html"), 1500);
     } else {
       showToast("error", "Gagal Masuk", "Kata sandi Admin salah!");
     }
+    return;
   }
-  // 3. Cek Akun Pelanggan (User)
-  else {
-    if (password.length < 6) {
-      showToast("error", "Gagal Masuk", "Kata sandi salah! (Min. 6 Karakter)");
-    } else {
-      // SIMPAN DATA KE LOCAL STORAGE SEBELUM PINDAH HALAMAN
-      const userData = {
-        name: email.split("@")[0], // Mengambil nama dari depan email sementara
-        email: email,
-        phone: "",
-        address: "",
-      };
-      localStorage.setItem("currentUser", JSON.stringify(userData));
 
-      showToast("success", "Berhasil", "Login Pelanggan berhasil...");
-      setTimeout(() => (window.location.href = "user/home.html"), 1500);
-    }
+  const users = getRegisteredUsers();
+  const account = users.find(
+    (u) => u.email.toLowerCase() === email.toLowerCase(),
+  );
+
+  if (!account) {
+    showToast(
+      "error",
+      "Gagal Masuk",
+      "Akun belum terdaftar. Silakan daftar terlebih dahulu.",
+    );
+    return;
   }
+
+  if (account.password !== password) {
+    showToast("error", "Gagal Masuk", "Kata sandi salah!");
+    return;
+  }
+
+  localStorage.setItem("currentUser", JSON.stringify(account));
+  showToast("success", "Berhasil", "Login Pelanggan berhasil...");
+  setTimeout(() => (window.location.href = "user/home.html"), 1500);
 });
 
-// --- LOGIKA SUBMIT DAFTAR ---
 document
   .getElementById("registerForm")
   .addEventListener("submit", function (e) {
     e.preventDefault();
 
-    const name = document.getElementById("reg-name").value;
-    const email = document.getElementById("reg-email").value;
+    const name = document.getElementById("reg-name").value.trim();
+    const email = document.getElementById("reg-email").value.trim();
     const password = document.getElementById("reg-password").value;
 
-    // 1. Validasi Format Email
     if (!isValidEmail(email)) {
       showToast("error", "Pendaftaran Gagal", "Format email kurang tepat!");
       return;
     }
 
-    // 2. Validasi Kata Sandi (Misal wajib minimal 6 karakter)
     if (password.length < 6) {
       showToast(
         "error",
@@ -130,16 +131,45 @@ document
       return;
     }
 
-    // 3. SIMPAN DATA PENDAFTARAN KE LOCAL STORAGE
-    const userData = {
+    if (email.toLowerCase() === "admin@umkm.local") {
+      showToast(
+        "error",
+        "Pendaftaran Gagal",
+        "Email ini tidak dapat digunakan untuk pendaftaran.",
+      );
+      return;
+    }
+
+    const users = getRegisteredUsers();
+    const exists = users.some(
+      (u) => u.email.toLowerCase() === email.toLowerCase(),
+    );
+
+    if (exists) {
+      showToast(
+        "error",
+        "Pendaftaran Gagal",
+        "Email sudah terdaftar. Silakan masuk.",
+      );
+      return;
+    }
+
+    const newUser = {
       name: name,
       email: email,
+      password: password,
       phone: "",
       address: "",
     };
-    localStorage.setItem("currentUser", JSON.stringify(userData));
 
-    // 4. Jika Sukses
-    showToast("success", "Pendaftaran Berhasil", "Mengarahkan ke beranda...");
+    users.push(newUser);
+    saveRegisteredUsers(users);
+    localStorage.setItem("currentUser", JSON.stringify(newUser));
+
+    showToast(
+      "success",
+      "Pendaftaran Berhasil",
+      "Mengarahkan ke beranda...",
+    );
     setTimeout(() => (window.location.href = "user/home.html"), 1500);
   });

@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .join("");
 
-    // attach detail listeners
+    
     tbody.querySelectorAll(".btn-detail").forEach((btn) => {
       btn.addEventListener("click", function () {
         const id = this.getAttribute("data-id");
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(modal);
   };
 
-  // initial render
+  
   render(orders.sort((a,b)=> (b.id||"").localeCompare(a.id||"", undefined, {numeric:true})));
 
   if (searchInput) searchInput.addEventListener("input", filterAndSearch);

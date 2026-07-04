@@ -4,6 +4,65 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   if (!checkoutItemsContainer) return;
 
+  const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+  const addressCard = document.getElementById("addressCard");
+  const addressEmptyState = document.getElementById("addressEmptyState");
+  const addressUserDetails = document.getElementById("addressUserDetails");
+
+  const btnDefaultAddress = document.getElementById("btnDefaultAddress");
+  const btnCustomAddress = document.getElementById("btnCustomAddress");
+  const customAddressContainer = document.getElementById(
+    "customAddressContainer",
+  );
+  const customAddressInput = document.getElementById("customAddressInput");
+
+  const btnConfirmOrder = document.getElementById("btnConfirmOrder");
+
+  let currentAddressMode = "default";
+
+  if (currentUser.address) {
+    addressCard.style.display = "flex";
+    addressEmptyState.style.display = "none";
+    addressUserDetails.textContent = currentUser.address;
+    if (btnConfirmOrder) btnConfirmOrder.disabled = false;
+  } else {
+    addressCard.style.display = "none";
+    addressEmptyState.style.display = "block";
+    if (btnConfirmOrder) btnConfirmOrder.disabled = true;
+  }
+
+  if (btnDefaultAddress && btnCustomAddress) {
+    btnDefaultAddress.addEventListener("click", () => {
+      currentAddressMode = "default";
+      btnDefaultAddress.classList.add("active");
+      btnCustomAddress.classList.remove("active");
+
+      customAddressContainer.style.display = "none";
+
+      if (currentUser.address) {
+        addressCard.style.display = "flex";
+        addressEmptyState.style.display = "none";
+        if (btnConfirmOrder) btnConfirmOrder.disabled = false;
+      } else {
+        addressCard.style.display = "none";
+        addressEmptyState.style.display = "block";
+        if (btnConfirmOrder) btnConfirmOrder.disabled = true;
+      }
+    });
+
+    btnCustomAddress.addEventListener("click", () => {
+      currentAddressMode = "custom";
+      btnCustomAddress.classList.add("active");
+      btnDefaultAddress.classList.remove("active");
+
+      addressCard.style.display = "none";
+      addressEmptyState.style.display = "none";
+      customAddressContainer.style.display = "block";
+
+      if (btnConfirmOrder) btnConfirmOrder.disabled = false;
+    });
+  }
+
   const pendingCheckout = JSON.parse(localStorage.getItem("pendingCheckout"));
 
   if (!pendingCheckout || pendingCheckout.items.length === 0) {
@@ -30,16 +89,28 @@ document.addEventListener("DOMContentLoaded", () => {
     checkoutTotalDisplay.textContent = `Rp ${pendingCheckout.total.toLocaleString("id-ID")}`;
   }
 
-  const btnConfirmOrder = document.getElementById("btnConfirmOrder");
   if (btnConfirmOrder) {
     btnConfirmOrder.addEventListener("click", () => {
-      const address = document.getElementById("deliveryAddress").value.trim();
-      const paymentMethod = document.getElementById("paymentMethod").value;
+      let finalAddress = "";
 
-      if (!address) {
-        alert("Silakan masukkan alamat lengkap pengiriman!");
+      if (currentAddressMode === "default") {
+        finalAddress = currentUser.address || "";
+      } else {
+        finalAddress = customAddressInput.value.trim();
+      }
+
+      if (!finalAddress) {
+        if (currentAddressMode === "default") {
+          alert(
+            "Alamat pengiriman default belum diisi. Silakan lengkapi di halaman Profil atau gunakan Alamat Sekarang.",
+          );
+        } else {
+          alert("Mohon ketik alamat pengiriman Anda pada kolom yang tersedia.");
+        }
         return;
       }
+
+      const paymentMethod = document.getElementById("paymentMethod").value;
 
       const newOrder = {
         id: "ORD" + new Date().getTime(),
@@ -47,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tenantName: pendingCheckout.tenantName,
         items: pendingCheckout.items,
         total: pendingCheckout.total,
-        address: address,
+        address: finalAddress,
         paymentMethod: paymentMethod,
         status: "Menunggu Konfirmasi",
         date: new Date().toLocaleDateString("id-ID", {

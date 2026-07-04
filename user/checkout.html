@@ -8,67 +8,105 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght=300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/User/checkout.css">
+    <style>
+        .address-empty-state {
+            border: 1px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            color: #64748b;
+        }
+        .address-empty-state p {
+            margin: 0 0 16px;
+        }
+        .btn-goto-profile {
+            display: inline-block;
+            background: #1EAD4C;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+    </style>
 </head>
 <body class="checkout-body-bg">
     <div class="checkout-container">
-        <header class="checkout-header-card">
-            <button class="btn-circle-back-embedded" onclick="window.history.back()">
+        <div class="checkout-header-card">
+            <button class="btn-circle-back-embedded" onclick="window.location.href='tenant.html'">
                 <i class="fas fa-arrow-left"></i>
             </button>
-            <h1 class="checkout-title-embedded">Konfirmasi Pesanan</h1>
-        </header>
-
-        <div class="checkout-section">
-            <h3 class="checkout-section-title"><i class="fas fa-map-marker-alt"></i> Alamat Pengiriman</h3>
-            <div class="address-card-dummy">
-                <div class="address-header">
-                    <span class="address-badge">Alamat Utama</span>
-                </div>
-                <p class="address-user-name">Budi Santoso <span class="address-phone">(+62) 812-3456-7890</span></p>
-                <p class="address-details">Jl. Merdeka No. 123, Kel. Suka Maju, Kec. Cerdas, Kota Surakarta, Jawa Tengah, 57123</p>
-            </div>
-            <textarea id="deliveryAddress" style="display:none;">Jl. Merdeka No. 123, Kel. Suka Maju, Kec. Cerdas, Kota Surakarta, Jawa Tengah, 57123</textarea>
+            <h1 class="checkout-title-embedded">Selesaikan Pesanan</h1>
         </div>
 
-        <div class="checkout-section shadow-smooth">
-            <h3 class="checkout-section-title"><i class="fas fa-shopping-bag"></i> Ringkasan Pesanan</h3>
+        <div class="checkout-section">
+            <h3 class="checkout-section-title">
+                <i class="fas fa-map-marker-alt"></i> Alamat Pengiriman
+            </h3>
+            
+            <div class="address-type-toggle">
+                <button id="btnDefaultAddress" class="address-btn active">Alamat Default</button>
+                <button id="btnCustomAddress" class="address-btn">Alamat Sekarang</button>
+            </div>
+
+            <div id="addressEmptyState" class="address-empty-state" style="display: none;">
+                <p>Anda belum mengatur alamat pengiriman utama.</p>
+                <a href="profile.html" class="btn-goto-profile">Atur Alamat Sekarang</a>
+            </div>
+
+            <div id="addressCard" class="address-card-dummy" style="display: none;">
+                <p id="addressUserDetails" class="address-details"></p>
+            </div>
+
+            <div id="customAddressContainer" style="display: none;">
+                <textarea id="customAddressInput" class="custom-address-input" placeholder="Masukkan alamat pengiriman Anda saat ini secara lengkap..."></textarea>
+            </div>
+        </div>
+
+        <div class="checkout-section">
+            <h3 class="checkout-section-title">
+                <i class="fas fa-shopping-bag"></i> Produk Yang Dibeli
+            </h3>
             <div id="checkoutItemsContainer" class="checkout-items-list"></div>
         </div>
 
         <div class="checkout-section">
-            <h3 class="checkout-section-title"><i class="fas fa-wallet"></i> Metode Pembayaran</h3>
+            <h3 class="checkout-section-title">
+                <i class="fas fa-credit-card"></i> Metode Pembayaran
+            </h3>
+            <input type="hidden" id="paymentMethod" value="Transfer Bank">
             <div class="payment-methods-grid">
-                <div class="payment-card active" onclick="selectPaymentMethod(this, 'Cash on Delivery (COD)')">
-                    <div class="payment-icon-box">
-                        <i class="fas fa-money-bill-wave"></i>
-                    </div>
-                    <span class="payment-label">Cash on Delivery</span>
-                </div>
-                <div class="payment-card" onclick="selectPaymentMethod(this, 'Transfer Bank')">
+                <div class="payment-card active" onclick="selectPaymentMethod(this, 'Transfer Bank')">
                     <div class="payment-icon-box">
                         <i class="fas fa-university"></i>
                     </div>
-                    <span class="payment-label">Transfer Bank</span>
+                    <div class="payment-label">Transfer Bank</div>
                 </div>
-                <div class="payment-card" onclick="selectPaymentMethod(this, 'QRIS')">
+                <div class="payment-card" onclick="selectPaymentMethod(this, 'E-Wallet')">
                     <div class="payment-icon-box">
-                        <i class="fas fa-qrcode"></i>
+                        <i class="fas fa-wallet"></i>
                     </div>
-                    <span class="payment-label">QRIS</span>
+                    <div class="payment-label">E-Wallet (Dana/OVO)</div>
+                </div>
+                <div class="payment-card" onclick="selectPaymentMethod(this, 'COD')">
+                    <div class="payment-icon-box">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="payment-label">Bayar di Tempat (COD)</div>
                 </div>
             </div>
-            <input type="hidden" id="paymentMethod" value="Cash on Delivery (COD)">
         </div>
     </div>
 
     <div class="checkout-floating-bar">
         <div class="checkout-total-info">
-            <span>Total Tagihan</span>
+            <span>Total Pembayaran</span>
             <strong id="checkoutTotalDisplay">Rp 0</strong>
         </div>
-        <button class="btn-confirm-order" id="btnConfirmOrder">BUAT PESANAN</button>
+        <button id="btnConfirmOrder" class="btn-confirm-order" disabled>Konfirmasi Pesanan</button>
     </div>
-    <script src="../js/User/auth.js"></script>
+
     <script src="../js/User/checkout.js"></script>
     <script>
         function selectPaymentMethod(element, value) {

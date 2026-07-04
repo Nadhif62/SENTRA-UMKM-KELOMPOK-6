@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Dropdown menu profil di topbar
   const userMenuBtn = document.getElementById("user-menu-btn-comprehensive");
   const profileDropdown = document.getElementById(
     "profile-dropdown-comprehensive",
@@ -17,141 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Data tenant untuk daftar & pencarian
-  const tenantsData = [
-    {
-      id: 1,
-      name: "Ayam Bakar Bu Sri",
-      desc: "Spesialis ayam bakar madu bumbu meresap dan aneka sambal Nusantara sejak 1999.",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTYil-1528r77QlfxtJ-MO6xb9_ngDt0EkGjPH_WXE3V_0ZmRjqqq1ADAKzRkw1T3oITOaS5bEfBwFCMyfva34xsx4R85TLzVTX4rB7IU&s=10",
-      isPromo: true,
-      promoBadge: "Diskon 25%",
-      rating: 4.8,
-      price: 25000,
-      category: "makanan",
-    },
-    {
-      id: 2,
-      name: "Pusat Oleh-Oleh Mbok Giyem",
-      desc: "Menyediakan aneka keripik tempe, singkong, pisang lumer, dan buah kering renyah khas lokal.",
-      img: "https://gotravelly.com/blog/wp-content/uploads/2017/12/oleh-oleh-solo-intip.jpg",
-      isPromo: true,
-      promoBadge: "Potongan Rp10rb",
-      rating: 4.5,
-      price: 15000,
-      category: "cemilan",
-    },
-    {
-      id: 3,
-      name: "Kedai Kopi Pak Kumis",
-      desc: "Tempat berkumpulnya penikmat kopi lokal racikan manual brew barista berpengalaman.",
-      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYDdEoY_oOgYA9QSYUtsG2Y-guqVM8y6oq_n7tMML_8aefv1MjEW2IXR4&s=10",
-      isPromo: true,
-      promoBadge: "Buy 1 Get 1",
-      rating: 4.9,
-      price: 20000,
-      category: "minuman",
-    },
-    {
-      id: 4,
-      name: "Warung Sate Khas Madura Cak Malik",
-      desc: "Sate ayam dan kambing pilihan dengan siraman bumbu kacang kental legendaris.",
-      img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=60",
-      isPromo: true,
-      promoBadge: "Diskon 15%",
-      rating: 4.6,
-      price: 28000,
-      category: "makanan",
-    },
-    {
-      id: 5,
-      name: "Dapur Organik Sehat Mama",
-      desc: "Menyediakan katering makanan sehat, rendah kalori, non-MSG, dan ramah diet.",
-      img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=500&q=60",
-      isPromo: true,
-      promoBadge: "Diskon 20%",
-      rating: 4.7,
-      price: 35000,
-      category: "makanan",
-    },
-    {
-      id: 6,
-      name: "Kedai Pizza Italia Wong Kito",
-      desc: "Perpaduan pizza tipis kering khas Italia dengan toping kearifan lokal yang melimpah.",
-      img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=500&q=60",
-      isPromo: true,
-      promoBadge: "Potongan Rp5rb",
-      rating: 4.4,
-      price: 45000,
-      category: "makanan",
-    },
-    {
-      id: 7,
-      name: "Salad & Juice Bar Premium",
-      desc: "Pilihan potongan buah segar dan sayur organik premium dengan dressing homemade istimewa.",
-      img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=500&q=60",
-      isPromo: false,
-      promoBadge: "",
-      rating: 4.2,
-      price: 26000,
-      category: "cemilan",
-    },
-    {
-      id: 8,
-      name: "Boba Time Kekinian",
-      desc: "Aneka minuman boba manis bertekstur kenyal dengan racikan susu segar berbagai varian rasa.",
-      img: "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=500&q=60",
-      isPromo: false,
-      promoBadge: "",
-      rating: 4.3,
-      price: 18000,
-      category: "minuman",
-    },
-    {
-      id: 9,
-      name: "Mie Ayam & Bakso Solo Mas Dino",
-      desc: "Mie homemade kenyal dipadukan kuah kaldu sapi murni dan bakso urat super mantap.",
-      img: "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=500&q=60",
-      isPromo: false,
-      promoBadge: "",
-      rating: 4.5,
-      price: 17000,
-      category: "makanan",
-    },
-    {
-      id: 10,
-      name: "Soto Lamongan Asli Cak Jono",
-      desc: "Soto ayam kampung khas Jawa Timur bertabur koya udang gurih melimpah.",
-      img: "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=500&q=60",
-      isPromo: false,
-      promoBadge: "",
-      rating: 4.6,
-      price: 19000,
-      category: "makanan",
-    },
-    {
-      id: 11,
-      name: "Burger Corner & Grill",
-      desc: "Daging burger premium dipanggang sempurna dengan saus keju lumer dan sayur segar.",
-      img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=60",
-      isPromo: false,
-      promoBadge: "",
-      rating: 4.7,
-      price: 32000,
-      category: "makanan",
-    },
-    {
-      id: 12,
-      name: "Iga Bakar Cobek Si Jangkung",
-      desc: "Iga sapi tebal dibakar kecap harum dan disajikan di atas cobek tanah liat panas.",
-      img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=500&q=60",
-      isPromo: false,
-      promoBadge: "",
-      rating: 4.9,
-      price: 55000,
-      category: "makanan",
-    },
-  ];
+
+  function loadTenants() {
+    return getTenants();
+  }
 
   const promoGrid = document.getElementById("promo-grid");
   const regularGrid = document.getElementById("regular-grid");
@@ -197,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderTenants() {
     if (!promoGrid || !regularGrid) return;
 
+    const tenantsData = loadTenants();
     const query = searchInput.value.toLowerCase().trim();
     const sortBy = sortSelect.value;
     const category = categorySelect.value;
@@ -258,5 +127,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     sortSelect.addEventListener("change", renderTenants);
     categorySelect.addEventListener("change", renderTenants);
+
+
+    window.addEventListener("storage", (e) => {
+      if (e.key === "tenants") renderTenants();
+    });
   }
 });

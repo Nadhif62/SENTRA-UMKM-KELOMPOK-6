@@ -61,7 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     const updatedName = document.getElementById("profName").value.trim();
     const updatedPhone = document.getElementById("profPhone").value.trim();
-    const updatedAddress = document.getElementById("profAddress").value.trim();
+    const updatedAddress = document
+      .getElementById("profAddress")
+      .value.trim();
 
     if (!updatedName) {
       showProfileToast("error", "Gagal", "Nama lengkap tidak boleh kosong!");
@@ -73,8 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
     currentUser.address = updatedAddress;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
 
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const idx = users.findIndex(
+      (u) => u.email.toLowerCase() === (currentUser.email || "").toLowerCase(),
+    );
+    if (idx !== -1) {
+      users[idx] = { ...users[idx], ...currentUser };
+      localStorage.setItem("users", JSON.stringify(users));
+    }
+
     document.getElementById("sidebarUserName").textContent = updatedName;
-    window.cancelEditMode(); // Kunci kembali form setelah save
+    window.cancelEditMode();
     showProfileToast(
       "success",
       "Berhasil",
