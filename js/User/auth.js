@@ -1,6 +1,4 @@
-
 const checkUser = localStorage.getItem("currentUser");
-
 
 if (!checkUser || checkUser === "null" || checkUser === "undefined") {
   alert("Akses ditolak! Anda harus login terlebih dahulu.");
@@ -8,7 +6,7 @@ if (!checkUser || checkUser === "null" || checkUser === "undefined") {
 }
 
 window.prosesLogout = function () {
-  localStorage.clear(); 
+  localStorage.removeItem("currentUser");
   alert("Anda berhasil keluar. Sesi telah dibersihkan.");
   window.location.replace("../index.html");
 };

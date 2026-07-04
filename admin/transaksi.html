@@ -6,6 +6,39 @@
     <title>Admin Sentra - Data Transaksi</title>
     <link rel="stylesheet" href="../css/Admin/transaksi.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .action-buttons {
+            display: flex;
+            gap: 6px;
+        }
+        .btn-detail, .btn-selesai, .btn-batal-order {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.15s;
+        }
+        .btn-detail {
+            background: #eef2ff;
+            color: #4f46e5;
+        }
+        .btn-selesai {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        .btn-batal-order {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        .btn-detail:hover, .btn-selesai:hover, .btn-batal-order:hover {
+            opacity: 0.75;
+        }
+    </style>
 </head>
 <body>
 
@@ -66,6 +99,9 @@
                         <option value="batal">Dibatalkan</option>
                     </select>
                 </div>
+                <button class="btn-export" id="btnResetTransaksi" style="background:#dc2626;">
+                    <i class="fas fa-trash-alt"></i> Reset Transaksi
+                </button>
                 <button class="btn-export">
                     <i class="fas fa-file-download"></i> Ekspor Data
                 </button>
@@ -85,13 +121,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Rows rendered dynamically from localStorage 'orders' -->
                     </tbody>
                 </table>
             </div>
         </section>
     </main>
 
+    <script src="../js/shared-data.js"></script>
     <script src="../js/admin.js"></script>
     <script src="../js/admin-transaksi.js"></script>
 </body>

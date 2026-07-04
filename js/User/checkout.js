@@ -111,17 +111,19 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const paymentMethod = document.getElementById("paymentMethod").value;
+      const now = new Date();
 
       const newOrder = {
-        id: "ORD" + new Date().getTime(),
+        id: "ORD" + now.getTime(),
+        timestamp: now.getTime(),
         tenantId: pendingCheckout.tenantId,
         tenantName: pendingCheckout.tenantName,
         items: pendingCheckout.items,
         total: pendingCheckout.total,
         address: finalAddress,
         paymentMethod: paymentMethod,
-        status: "Menunggu Konfirmasi",
-        date: new Date().toLocaleDateString("id-ID", {
+        status: "Diproses",
+        date: now.toLocaleDateString("id-ID", {
           year: "numeric",
           month: "long",
           day: "numeric",
@@ -135,7 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("orders", JSON.stringify(orders));
       localStorage.removeItem("pendingCheckout");
 
-      alert("Pesanan berhasil dibuat!");
+      alert("Pesanan berhasil dibuat dan langsung diproses!");
       window.location.href = "history.html";
     });
   }

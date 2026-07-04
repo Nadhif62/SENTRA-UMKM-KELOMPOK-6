@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const tbody = document.querySelector(".data-table tbody");
   const searchInput = document.querySelector(".search-box input");
   const filterSelect = document.querySelector(".filter-select");
+  const btnReset = document.getElementById("btnResetTransaksi");
 
   if (!tbody) return;
 
@@ -19,6 +20,11 @@ document.addEventListener("DOMContentLoaded", function () {
     return "Rp " + Number(v || 0).toLocaleString("id-ID");
   }
 
+  function isOpenStatus(status) {
+    const s = (status || "").toLowerCase();
+    return !s.includes("selesai") && !s.includes("batal");
+  }
+
   function render(list) {
     if (!list || list.length === 0) {
       tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:20px;">Belum ada transaksi</td></tr>';
@@ -32,6 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
         const date = o.date || "-";
         const method = o.paymentMethod || "-";
         const total = formatCurrency(o.total || 0);
+        const actionButtons = isOpenStatus(o.status)
+          ? `
+            <button class="btn-selesai" title="Tandai Selesai" data-id="${o.id}"><i class="fas fa-check"></i></button>
+            <button class="btn-batal-order" title="Batalkan Pesanan" data-id="${o.id}"><i class="fas fa-times"></i></button>
+          `
+          : "";
         return `
           <tr>
             <td>${o.id || "-"}</td>
@@ -40,19 +52,45 @@ document.addEventListener("DOMContentLoaded", function () {
             <td>${total}</td>
             <td>${method}</td>
             <td><span class="badge ${badge}">${o.status || "-"}</span></td>
-            <td class="action-buttons"><button class="btn-detail" title="Detail Transaksi" data-id="${o.id}"><i class="fas fa-eye"></i></button></td>
+            <td class="action-buttons">
+              <button class="btn-detail" title="Detail Transaksi" data-id="${o.id}"><i class="fas fa-eye"></i></button>
+              ${actionButtons}
+            </td>
           </tr>
         `;
       })
       .join("");
 
-    
     tbody.querySelectorAll(".btn-detail").forEach((btn) => {
       btn.addEventListener("click", function () {
         const id = this.getAttribute("data-id");
         showOrderDetail(id);
       });
     });
+
+    tbody.querySelectorAll(".btn-selesai").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
+        if (!confirm(`Tandai pesanan ${id} sebagai Selesai?`)) return;
+        updateOrderStatus(id, "Selesai");
+      });
+    });
+
+    tbody.querySelectorAll(".btn-batal-order").forEach((btn) => {
+      btn.addEventListener("click", function () {
+        const id = this.getAttribute("data-id");
+        if (!confirm(`Batalkan pesanan ${id}? Tindakan ini tidak bisa dibatalkan.`)) return;
+        updateOrderStatus(id, "Dibatalkan");
+      });
+    });
+  }
+
+  function updateOrderStatus(id, newStatus) {
+    const idx = orders.findIndex((o) => o.id === id);
+    if (idx === -1) return;
+    orders[idx].status = newStatus;
+    localStorage.setItem("orders", JSON.stringify(orders));
+    filterAndSearch();
   }
 
   function filterAndSearch() {
@@ -128,7 +166,22 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.appendChild(modal);
   };
 
-  
+  if (btnReset) {
+    btnReset.addEventListener("click", function () {
+      if (orders.length === 0) {
+        alert("Tidak ada data transaksi untuk dihapus.");
+        return;
+      }
+      const confirmed = confirm(
+        "Hapus SEMUA data transaksi secara permanen? Tindakan ini tidak bisa dibatalkan.",
+      );
+      if (!confirmed) return;
+      localStorage.removeItem("orders");
+      orders = [];
+      render(orders);
+    });
+  }
+
   render(orders.sort((a,b)=> (b.id||"").localeCompare(a.id||"", undefined, {numeric:true})));
 
   if (searchInput) searchInput.addEventListener("input", filterAndSearch);

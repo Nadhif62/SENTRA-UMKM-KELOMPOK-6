@@ -55,6 +55,37 @@
             font-family: inherit;
         }
         .form-group textarea { resize: vertical; min-height: 60px; }
+        .file-input-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 12px;
+            background: #f8fafc;
+            border: 1.5px dashed #94a3b8;
+            border-radius: 8px;
+            color: #475569;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .file-upload-label i {
+            font-size: 1rem;
+            color: #1EAD4C;
+        }
+        .file-upload-label:hover {
+            background: #eafaf0;
+            border-color: #1EAD4C;
+            color: #1EAD4C;
+        }
         .form-row { display: flex; gap: 12px; }
         .form-row .form-group { flex: 1; }
         .checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
@@ -178,8 +209,14 @@
 
                 <div class="form-group">
                     <label>Foto Tenant</label>
-                    <input type="file" id="inputTenantFile" accept="image/*">
-                    <input type="url" id="inputTenantImgUrl" placeholder="atau tempel URL gambar di sini" style="margin-top:6px;">
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="inputTenantFile" accept="image/*" class="file-input-hidden">
+                        <label for="inputTenantFile" class="file-upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span id="fileNameDisplay">Pilih Foto Tenant</span>
+                        </label>
+                    </div>
+                    <input type="url" id="inputTenantImgUrl" placeholder="atau tempel URL gambar di sini" style="margin-top:8px;">
                     <img id="previewTenantImg" alt="Preview">
                 </div>
 

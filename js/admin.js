@@ -17,71 +17,139 @@ document.addEventListener("DOMContentLoaded", function () {
   initLogout();
 });
 
+function isValidOrder(order) {
+  const status = (order.status || "").toLowerCase();
+  return !status.includes("batal");
+}
+
+function getOrderTimestamp(order) {
+  if (order.timestamp) return order.timestamp;
+  const parsed = Date.parse(order.date);
+  return isNaN(parsed) ? 0 : parsed;
+}
+
+function isSameDay(ts, refDate) {
+  const d = new Date(ts);
+  return (
+    d.getFullYear() === refDate.getFullYear() &&
+    d.getMonth() === refDate.getMonth() &&
+    d.getDate() === refDate.getDate()
+  );
+}
 
 function initDashboard() {
   const cards = document.querySelectorAll(".card");
   if (cards.length === 0 && !document.getElementById("salesChart")) return;
 
-  let orders = JSON.parse(localStorage.getItem("orders")) || [];
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
   const tenants = getTenants();
   const totalProduk = getTotalProdukCount();
 
-  let totalPendapatan = 0;
-  let totalTransaksi = orders.length;
-  let totalTenant = tenants.length;
+  const now = new Date();
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
 
-  orders.forEach((order) => {
-    if (order.status !== "Batal" && order.status !== "Dibatalkan") {
-      totalPendapatan += order.total;
-    }
-  });
+  const validOrders = orders.filter(isValidOrder);
+  const todayOrders = validOrders.filter((o) =>
+    isSameDay(getOrderTimestamp(o), now),
+  );
+  const yesterdayOrders = validOrders.filter((o) =>
+    isSameDay(getOrderTimestamp(o), yesterday),
+  );
+
+  const totalTransaksiHariIni = todayOrders.length;
+  const totalTransaksiKemarin = yesterdayOrders.length;
+  const totalPendapatanHariIni = todayOrders.reduce(
+    (sum, o) => sum + (o.total || 0),
+    0,
+  );
+  const totalPendapatanKemarin = yesterdayOrders.reduce(
+    (sum, o) => sum + (o.total || 0),
+    0,
+  );
+  const totalTenant = tenants.length;
 
   cards.forEach((card) => {
     const titleEl = card.querySelector("h3");
     if (!titleEl) return;
     const title = titleEl.textContent.trim();
     const valueElement = card.querySelector(".card-value");
-    if (valueElement) {
-      if (title.includes("Tenant")) {
-        valueElement.textContent = totalTenant;
-      } else if (title.includes("Transaksi")) {
-        valueElement.textContent = totalTransaksi;
-      } else if (title.includes("Pendapatan")) {
-        valueElement.textContent =
-          "Rp " + totalPendapatan.toLocaleString("id-ID");
-      } else if (title.includes("Produk")) {
-        valueElement.textContent = totalProduk;
+    const trendElement = card.querySelector(".card-trend");
+
+    if (title.includes("Tenant")) {
+      if (valueElement) valueElement.textContent = totalTenant;
+      if (trendElement) {
+        trendElement.className = "card-trend trend-stable";
+        trendElement.innerHTML = `<i class="fas fa-store"></i> ${totalTenant} tenant terdaftar`;
       }
+    } else if (title.includes("Transaksi")) {
+      if (valueElement) valueElement.textContent = totalTransaksiHariIni;
+      if (trendElement) {
+        if (totalTransaksiHariIni === 0 && totalTransaksiKemarin === 0) {
+          trendElement.className = "card-trend trend-stable";
+          trendElement.innerHTML = `<i class="fas fa-minus"></i> Belum ada transaksi`;
+        } else if (totalTransaksiHariIni > totalTransaksiKemarin) {
+          trendElement.className = "card-trend trend-up";
+          trendElement.innerHTML = `<i class="fas fa-arrow-up"></i> Naik dari kemarin (${totalTransaksiKemarin})`;
+        } else if (totalTransaksiHariIni < totalTransaksiKemarin) {
+          trendElement.className = "card-trend trend-down";
+          trendElement.innerHTML = `<i class="fas fa-arrow-down"></i> Turun dari kemarin (${totalTransaksiKemarin})`;
+        } else {
+          trendElement.className = "card-trend trend-stable";
+          trendElement.innerHTML = `<i class="fas fa-minus"></i> Stabil dari kemarin`;
+        }
+      }
+    } else if (title.includes("Pendapatan")) {
+      if (valueElement)
+        valueElement.textContent =
+          "Rp " + totalPendapatanHariIni.toLocaleString("id-ID");
+      if (trendElement) {
+        if (totalPendapatanKemarin === 0) {
+          trendElement.className = "card-trend trend-stable";
+          trendElement.innerHTML =
+            totalPendapatanHariIni > 0
+              ? `<i class="fas fa-arrow-up"></i> Belum ada data kemarin`
+              : `<i class="fas fa-minus"></i> Belum ada transaksi`;
+        } else {
+          const percent = Math.round(
+            ((totalPendapatanHariIni - totalPendapatanKemarin) /
+              totalPendapatanKemarin) *
+              100,
+          );
+          if (percent > 0) {
+            trendElement.className = "card-trend trend-up";
+            trendElement.innerHTML = `<i class="fas fa-arrow-up"></i> +${percent}% dari kemarin`;
+          } else if (percent < 0) {
+            trendElement.className = "card-trend trend-down";
+            trendElement.innerHTML = `<i class="fas fa-arrow-down"></i> ${percent}% dari kemarin`;
+          } else {
+            trendElement.className = "card-trend trend-stable";
+            trendElement.innerHTML = `<i class="fas fa-minus"></i> Stabil dari kemarin`;
+          }
+        }
+      }
+    } else if (title.includes("Produk")) {
+      if (valueElement) valueElement.textContent = totalProduk;
     }
   });
 
   const canvas = document.getElementById("salesChart");
   if (canvas && window.Chart) {
-    let chartLabels = [
-      "Senin",
-      "Selasa",
-      "Rabu",
-      "Kamis",
-      "Jumat",
-      "Sabtu",
-      "Minggu",
-    ];
-    let chartData = [
-      850000, 920000, 780000, 1050000, 1250000, 2100000, 1950000,
-    ];
-
-    if (orders.length > 0) {
-      chartLabels = [];
-      chartData = [];
-      let recentOrders = [...orders].reverse().slice(0, 7).reverse();
-      recentOrders.forEach((o) => {
-        let shortDate = o.date
-          ? o.date.split(" ").slice(0, 2).join(" ")
-          : "Baru";
-        chartLabels.push(shortDate);
-        chartData.push(o.total);
-      });
+    const days = [];
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(now);
+      d.setDate(now.getDate() - i);
+      days.push(d);
     }
+
+    const chartLabels = days.map((d) =>
+      d.toLocaleDateString("id-ID", { weekday: "long" }),
+    );
+    const chartData = days.map((d) =>
+      validOrders
+        .filter((o) => isSameDay(getOrderTimestamp(o), d))
+        .reduce((sum, o) => sum + (o.total || 0), 0),
+    );
 
     const ctx = canvas.getContext("2d");
     new Chart(ctx, {
@@ -134,13 +202,14 @@ function initTenantAdminPage() {
   const tbody = document.getElementById("tenantTableBody");
   const btnAdd = document.getElementById("btnTambahTenant");
   const modal = document.getElementById("modalTambahTenant");
-  if (!tbody || !modal) return; // bukan halaman ini
+  if (!tbody || !modal) return;
 
   const form = document.getElementById("formTambahTenant");
   const btnCancel = document.getElementById("btnBatalTenant");
   const fileInput = document.getElementById("inputTenantFile");
   const urlInput = document.getElementById("inputTenantImgUrl");
   const preview = document.getElementById("previewTenantImg");
+  const fileNameDisplay = document.getElementById("fileNameDisplay");
   const searchInput = document.querySelector(
     '.table-section .search-box input[type="text"]',
   );
@@ -211,6 +280,7 @@ function initTenantAdminPage() {
       preview.style.display = "none";
       preview.src = "";
     }
+    if (fileNameDisplay) fileNameDisplay.textContent = "Pilih Foto Tenant";
   }
 
   if (btnAdd) btnAdd.addEventListener("click", openModal);
@@ -231,6 +301,7 @@ function initTenantAdminPage() {
           preview.style.display = "block";
         }
         fileInput.dataset.base64 = reader.result;
+        if (fileNameDisplay) fileNameDisplay.textContent = file.name;
       };
       reader.readAsDataURL(file);
     });
@@ -245,6 +316,7 @@ function initTenantAdminPage() {
           fileInput.value = "";
           delete fileInput.dataset.base64;
         }
+        if (fileNameDisplay) fileNameDisplay.textContent = "Pilih Foto Tenant";
       }
     });
   }
@@ -307,12 +379,11 @@ function initTenantAdminPage() {
   renderTenantTable();
 }
 
-
 function initProdukAdminPage() {
   const tbody = document.getElementById("produkTableBody");
   const btnAdd = document.getElementById("btnTambahProduk");
   const modal = document.getElementById("modalTambahProduk");
-  if (!tbody || !modal) return; // bukan halaman ini
+  if (!tbody || !modal) return;
 
   const form = document.getElementById("formTambahProduk");
   const btnCancel = document.getElementById("btnBatalProduk");
